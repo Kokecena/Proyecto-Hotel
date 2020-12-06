@@ -5,6 +5,7 @@
  */
 package Vista.Sistema;
 
+import Metodos.Iconos;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -77,20 +78,27 @@ public class MenuOpciones extends JMenuBar {
     private void initComponents() {
         //this.setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
         mSistema = new JMenu("Sistema");
+        mSistema.setIcon(Iconos.ICONO_MENU_SISTEMA);
         mArchivo = new JMenu("Archivo");
-        miHabitaciones = new JMenuItem("Habitaciones");
-        miProductos = new JMenuItem("Productos");
+        mArchivo.setIcon(Iconos.ICONO_MENU_ARCHIVO);
+        miHabitaciones = new JMenuItem("Habitaciones",Iconos.ICONO_SUBMENU_HABITACIONES);
+        miProductos = new JMenuItem("Productos", Iconos.ICONO_SUBMENU_PRODUCTOS);
         mReservas = new JMenu("Reservas");
-        miReservasConsumos = new JMenuItem("Reservas y Consumos");
-        miClientes = new JMenuItem("Clientes");
-        miPagos = new JMenuItem("Pagos");
+        mReservas.setIcon(Iconos.ICONO_MENU_RESERVAS);
+        miReservasConsumos = new JMenuItem("Reservas y Consumos",Iconos.ICONO_SUBMENU_RESERVAS_Y_CONSUMOS);
+        miClientes = new JMenuItem("Clientes y Trabajadores",Iconos.ICONO_SUBMENU_CLIENTES_Y_TRABAJADORES);
+        miPagos = new JMenuItem("Pagos",Iconos.ICONO_SUBMENU_PAGOS);
         mConsultas = new JMenu("Consultas");
+        mConsultas.setIcon(Iconos.ICONO_MENU_CONSULTAS);
         mConfiguraciones = new JMenu("Configuraciones");
-        miUsuariosAccesos = new JMenuItem("Usuarios y Accesos");
+        mConfiguraciones.setIcon(Iconos.ICONO_MENU_CONFIGURACIONES);
+        miUsuariosAccesos = new JMenuItem("Usuarios y Accesos",Iconos.ICONO_SUBMENU_USUARIOS_Y_ACCESOS);
         mHerramientas = new JMenu("Herramentas");
+        mHerramientas.setIcon(Iconos.ICONO_MENU_HERRAMIENTAS);
         mAyuda = new JMenu("Ayuda");
-        miAcercaDe = new JMenuItem("Acerca de...");
-        miAyuda = new JMenuItem("Ayuda");
+        mAyuda.setIcon(Iconos.ICONO_MENU_AYUDA);
+        miAcercaDe = new JMenuItem("Acerca de...",Iconos.ICONO_SUBMENU_ACERCA_DE);
+        miAyuda = new JMenuItem("Ayuda",Iconos.ICONO_SUBMENU_AYUDA);
     }
 
     public JMenu getmSistema() {

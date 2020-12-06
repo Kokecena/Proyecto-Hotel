@@ -1,12 +1,11 @@
 package Vista.Sistema;
 
+import Metodos.Iconos;
 import Vista.ClientesTrabajadores.PanelClientes;
 import Vista.Producto.PanelProducto;
 import Vista.ClientesTrabajadores.PanelTrabajador;
 import Vista.habitacion.PanelHabitacion;
-import com.formdev.flatlaf.FlatDarculaLaf;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.FlatIntelliJLaf;
+import java.awt.Graphics;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -32,25 +31,22 @@ public class VentanaSistema {
         initFrame();
         addMenu();
         addDesktop();
-
     }
 
     private void initLookAndFeel() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         try {
-            UIManager.setLookAndFeel(new com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme());
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            //UIManager.setLookAndFeel(new FlatDarculaLaf());
-            //UIManager.setLookAndFeel(new FlatIntelliJLaf());
+            UIManager.setLookAndFeel(new com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme());
         } catch (UnsupportedLookAndFeelException ex) {
             ex.printStackTrace(System.out);
         }
     }
 
     private void initFrame() {
-        //ventana.setIconImage(Iconos.ICONO_SISTEMA);
+        ventana.setIconImage(Iconos.ICONO_SISTEMA.getImage());
         ventana.setTitle("Sistema Hotelero");
         ventana.setSize(1000, 700);
+        ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ventana.setLocationRelativeTo(null);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -58,7 +54,13 @@ public class VentanaSistema {
     private void initComponents() {
         ventana = new JFrame();
         menu = new MenuOpciones();
-        escritorio = new JDesktopPane();
+        escritorio = new JDesktopPane() {
+            @Override
+            public void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(Iconos.FONDO_ESCRITORIO.getImage(), 0, 0, getWidth(), getHeight(), this);
+            }
+        };
     }
 
     private void addMenu() {

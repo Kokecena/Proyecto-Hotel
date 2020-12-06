@@ -5,6 +5,7 @@
  */
 package Vista.ClientesTrabajadores;
 
+import Metodos.Iconos;
 import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
 
@@ -31,15 +32,17 @@ public class VentanaClientesTrabajadores extends JInternalFrame {
     }
 
     private void addComponents() {
-        pestanas.addTab("Clientes", panelClientes);
-        pestanas.addTab("Trabajadores", panelTrabajador);
+        pestanas.addTab("Clientes",Iconos.ICONO_PESTANA_CLIENTES, panelClientes);
+        pestanas.addTab("Trabajadores",Iconos.ICONO_PESTANA_TRABAJADORES, panelTrabajador);
         add(pestanas);
     }
 
     private void initFrame() {
         setTitle("Clientes y Trabajadores");
+        setFrameIcon(Iconos.ICONO_SUBMENU_CLIENTES_Y_TRABAJADORES);
         setClosable(true);
         setIconifiable(true);
+        setResizable(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
     }

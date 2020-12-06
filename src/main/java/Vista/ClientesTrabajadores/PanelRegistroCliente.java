@@ -3,7 +3,6 @@ package Vista.ClientesTrabajadores;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static Metodos.GBCMetodos.*;
-import Vista.Persona.PanelPersona;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 

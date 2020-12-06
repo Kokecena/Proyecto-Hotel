@@ -1,7 +1,6 @@
 package Vista.ClientesTrabajadores;
 
 import static Metodos.GBCMetodos.addComponentGBLayout;
-import Vista.Persona.PanelPersona;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import javax.swing.JComboBox;

@@ -1,5 +1,6 @@
 package Vista.habitacion;
 
+import Metodos.Iconos;
 import Vista.Formularios.PanelTabla;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -24,12 +25,11 @@ public class PanelHabitacion extends JInternalFrame {
     }
 
     private void initFrame() {
-        setTitle("Habitacion");
+        setTitle("Habitaciones");
+        setFrameIcon(Iconos.ICONO_SUBMENU_HABITACIONES);
         setLayout(new BorderLayout());
-        //setSize(850,550);
         this.setClosable(true);
         this.setIconifiable(true);
-        this.setMaximizable(true);
         this.setResizable(true);
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

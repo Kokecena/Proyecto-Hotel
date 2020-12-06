@@ -5,6 +5,7 @@
  */
 package Vista.Formularios;
 
+import Metodos.Iconos;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -44,9 +45,9 @@ public class PanelRegistro extends JPanel {
     }
     
     public void addButtons() {
-        btnNuevo = new JButton("Nuevo");
-        btnGuardar = new JButton("Guardar");
-        btnCancelar = new JButton("Cancelar");
+        btnNuevo = new JButton("Nuevo",Iconos.ICONO_BOTON_NUEVO);
+        btnGuardar = new JButton("Guardar",Iconos.ICONO_BOTON_GUARDAR);
+        btnCancelar = new JButton("Cancelar",Iconos.ICONO_BOTON_CANCELAR);
         setActionCommands();
         panelBotones = new JPanel(new FlowLayout());
         panelBotones.add(btnNuevo);

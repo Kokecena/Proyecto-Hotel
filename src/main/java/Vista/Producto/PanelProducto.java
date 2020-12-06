@@ -5,6 +5,7 @@
  */
 package Vista.Producto;
 
+import Metodos.Iconos;
 import Vista.Formularios.PanelTabla;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -30,6 +31,7 @@ public class PanelProducto extends JInternalFrame {
 
     private void initFrame() {
         setTitle("Producto");
+        setFrameIcon(Iconos.ICONO_SUBMENU_PRODUCTOS);
         setLayout(new BorderLayout());
         initComponents();
         setClosable(true);

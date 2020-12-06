@@ -5,6 +5,7 @@
  */
 package Vista.ReservasConsumos;
 
+import Metodos.Iconos;
 import javax.swing.JInternalFrame;
 import javax.swing.JTabbedPane;
 
@@ -26,6 +27,7 @@ public class VentanaReservasConsumos extends JInternalFrame {
 
     private void initFrame() {
         setTitle("Reservas y consumos");
+        setFrameIcon(Iconos.ICONO_SUBMENU_RESERVAS_Y_CONSUMOS);
         setClosable(true);
         setIconifiable(true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -39,8 +41,8 @@ public class VentanaReservasConsumos extends JInternalFrame {
     }
 
     private void addComponents() {
-        pestanas.addTab("Reservas", panelReserva);
-        pestanas.addTab("Consumos", panelConsumo);
+        pestanas.addTab("Reservas",Iconos.ICONO_SUBMENU_RESERVAS_Y_CONSUMOS, panelReserva);
+        pestanas.addTab("Consumos",Iconos.ICONO_PESTANA_CONSUMOS ,panelConsumo);
         add(pestanas);
     }
 

@@ -5,6 +5,7 @@
  */
 package Vista.Pagos;
 
+import Metodos.Iconos;
 import Vista.Formularios.PanelTabla;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -33,6 +34,7 @@ public class PanelPagos extends JInternalFrame {
 
     private void initFrame() {
         setTitle("Pagos");
+        setFrameIcon(Iconos.ICONO_SUBMENU_PAGOS);
         setLayout(new BorderLayout());
         initComponents();
         addComponents();
