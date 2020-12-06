@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Reserva;
+package Vista.ReservasConsumos;
 
+import Vista.Formularios.PanelRegistro;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -24,7 +26,7 @@ import javax.swing.JTextField;
  *
  * @author jovan
  */
-public class PanelRegistroReserva extends JPanel {
+public class PanelRegistroReserva extends PanelRegistro {
 
     private JTextField txtId;
     private JTextField txtIdHabitacion;
@@ -36,21 +38,19 @@ public class PanelRegistroReserva extends JPanel {
     private JTextField txtCosto;
     private JButton btnBuscarHabitacion;
     private JButton btnBuscarCliente;
-    private JButton btnNuevo;
-    private JButton btnGuardar;
-    private JButton btnCancelar;
     private JComboBox<String> cbTipoReserva;
     private JComboBox<String> cbEstadoReserva;
     private JDateChooser dcReserva;
     private JDateChooser dcIngreso;
     private JDateChooser dcSalida;
-    private JPanel pBotones;
     private JPanel pCampos;
     private Insets inset;
     private Font fontDc;
+    
     public PanelRegistroReserva() {
+        super("Registro de reservas", new Dimension(300,800));
         initComponents();
-        initMainPanel();
+        super.initMainPanel();
         initSubPanels();
     }
 
@@ -69,9 +69,6 @@ public class PanelRegistroReserva extends JPanel {
         txtCosto = new JTextField();
         btnBuscarHabitacion = new JButton("...");
         btnBuscarCliente = new JButton("...");
-        btnNuevo = new JButton("Nuevo");
-        btnGuardar = new JButton("Guardar");
-        btnCancelar = new JButton("Cancelar");
         cbTipoReserva = new JComboBox(new String[]{"Reserva", "Alquiler"});
         cbEstadoReserva = new JComboBox(new String[]{"Alquiler", "Pagada", "Anulada"});
         fontDc = new Font("Arial",Font.PLAIN,11);
@@ -79,15 +76,10 @@ public class PanelRegistroReserva extends JPanel {
         dcReserva.setFont(fontDc);
         dcIngreso = new JDateChooser();
         dcSalida = new JDateChooser();
-        pBotones = new JPanel(new FlowLayout(FlowLayout.CENTER,20,20));
         pCampos = new JPanel(new GridBagLayout());
         inset = new Insets(10, 10, 0, 0);
     }
 
-    private void initMainPanel() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createTitledBorder("Registro de Reservas"));
-    }
 
     private void initSubPanels() {
         addFields();
@@ -133,11 +125,65 @@ public class PanelRegistroReserva extends JPanel {
         add(pCampos);
     }
 
-    private void addButtons() {
-        pBotones.add(btnNuevo);
-        pBotones.add(btnGuardar);
-        pBotones.add(btnCancelar);
-        add(pBotones);
+    public JTextField getTxtId() {
+        return txtId;
     }
 
+    public JTextField getTxtIdHabitacion() {
+        return txtIdHabitacion;
+    }
+
+    public JTextField getTxtIdCliente() {
+        return txtIdCliente;
+    }
+
+    public JTextField getTxtIdTrabajador() {
+        return txtIdTrabajador;
+    }
+
+    public JTextField getTxtNumero() {
+        return txtNumero;
+    }
+
+    public JTextField getTxtCliente() {
+        return txtCliente;
+    }
+
+    public JTextField getTxtTrabajador() {
+        return txtTrabajador;
+    }
+
+    public JTextField getTxtCosto() {
+        return txtCosto;
+    }
+
+    public JButton getBtnBuscarHabitacion() {
+        return btnBuscarHabitacion;
+    }
+
+    public JButton getBtnBuscarCliente() {
+        return btnBuscarCliente;
+    }
+
+    public JComboBox<String> getCbTipoReserva() {
+        return cbTipoReserva;
+    }
+
+    public JComboBox<String> getCbEstadoReserva() {
+        return cbEstadoReserva;
+    }
+
+    public JDateChooser getDcReserva() {
+        return dcReserva;
+    }
+
+    public JDateChooser getDcIngreso() {
+        return dcIngreso;
+    }
+
+    public JDateChooser getDcSalida() {
+        return dcSalida;
+    }
+    
+    
 }

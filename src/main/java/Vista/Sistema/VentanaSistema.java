@@ -1,8 +1,9 @@
 package Vista.Sistema;
 
-import Vista.Clientes.PanelClientes;
+import Metodos.Iconos;
+import Vista.ClientesTrabajadores.PanelClientes;
 import Vista.Producto.PanelProducto;
-import Vista.Trabajador.PanelTrabajador;
+import Vista.ClientesTrabajadores.PanelTrabajador;
 import Vista.habitacion.PanelHabitacion;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -39,13 +40,13 @@ public class VentanaSistema {
         initFrame();
         addMenu();
         addDesktop();
-        
+
     }
 
     private void initLookAndFeel() {
-            JFrame.setDefaultLookAndFeelDecorated(false);
+        JFrame.setDefaultLookAndFeelDecorated(true);
         try {
-            UIManager.setLookAndFeel(new com.formdev.flatlaf.intellijthemes.FlatGrayIJTheme());
+            UIManager.setLookAndFeel(new com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme());
             //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             //UIManager.setLookAndFeel(new FlatDarculaLaf());
             //UIManager.setLookAndFeel(new FlatIntelliJLaf());
@@ -55,6 +56,7 @@ public class VentanaSistema {
     }
 
     private void initFrame() {
+        //ventana.setIconImage(Iconos.ICONO_SISTEMA);
         ventana.setTitle("Sistema Hotelero");
         ventana.setSize(1000, 700);
         ventana.setLocationRelativeTo(null);

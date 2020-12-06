@@ -54,5 +54,17 @@ public class PanelRegistro extends JPanel {
         panelBotones.add(btnCancelar);
         add(panelBotones, BorderLayout.SOUTH);
     }
+
+    public JButton getBtnNuevo() {
+        return btnNuevo;
+    }
+
+    public JButton getBtnGuardar() {
+        return btnGuardar;
+    }
+
+    public JButton getBtnCancelar() {
+        return btnCancelar;
+    }
     
 }

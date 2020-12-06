@@ -1,11 +1,11 @@
-package Vista.Clientes;
+package Vista.ClientesTrabajadores;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import static Metodos.GBCMetodos.*;
 import Vista.Persona.PanelPersona;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import javax.swing.BorderFactory;
 
 /**
  *
@@ -16,22 +16,17 @@ public class PanelRegistroCliente extends PanelPersona {
     private JTextField txtCodigo;
 
     public PanelRegistroCliente() {
-        super();
-        initMainPanel();
+        super("Registro de clientes",new Dimension(380,800));
+        initComponents();
+        super.initMainPanel();
         initSubPanels();
     }
 
-    @Override
-    protected void initSubPanels() {
-        super.initSubPanels();
+    private void initSubPanels(){
+        addFields();
+        addButtons();
     }
-
-    @Override
-    protected void initMainPanel() {
-        super.initMainPanel();
-        setBorder(BorderFactory.createTitledBorder("Registro de Clientes"));
-    }
-
+    
     @Override
     protected void initComponents() {
         super.initComponents();
@@ -43,6 +38,7 @@ public class PanelRegistroCliente extends PanelPersona {
         super.addFields();
         addComponentGBLayout(super.getpCampos(), new JLabel("Codigo: "), 0, 18, GridBagConstraints.EAST, super.getInsetFields());
         addComponentGBLayout(super.getpCampos(), txtCodigo, 1, 18, GridBagConstraints.NONE, GridBagConstraints.WEST, super.getInsetFields());
+        add(getpCampos());
     }
 
     public JTextField getTxtCodigo() {

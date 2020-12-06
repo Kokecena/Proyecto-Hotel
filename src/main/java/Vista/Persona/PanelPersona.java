@@ -6,6 +6,8 @@
 package Vista.Persona;
 
 import static Metodos.GBCMetodos.addComponentGBLayout;
+import Vista.Formularios.PanelRegistro;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,7 +23,7 @@ import javax.swing.JTextField;
  *
  * @author jovan
  */
-public class PanelPersona extends JPanel {
+public class PanelPersona extends PanelRegistro {
 
     private JTextField txtId;
     private JTextField txtNombre;
@@ -32,32 +34,12 @@ public class PanelPersona extends JPanel {
     private JTextField txtDireccion;
     private JTextField txtTelefono;
     private JTextField txtEmail;
-    private JButton btnNuevo;
-    private JButton btnGuardar;
-    private JButton btnCancelar;
     private Insets insetFields;
-    private JPanel pBotones;
     private JPanel pCampos;
 
-    public PanelPersona() {
+    public PanelPersona(String titulo, Dimension dimension) {
+        super(titulo, dimension);
         initComponents();
-    }
-    
-    protected void initMainPanel() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-    }
-    
-    protected void initSubPanels() {
-        addFields();
-        addButtons();
-        add(pCampos);
-        add(pBotones);
-    }
-    
-    protected void addButtons() {
-        pBotones.add(btnNuevo);
-        pBotones.add(btnGuardar);
-        pBotones.add(btnCancelar);
     }
     
     protected void initComponents() {
@@ -71,10 +53,6 @@ public class PanelPersona extends JPanel {
         txtDireccion = new JTextField(18);
         txtTelefono = new JTextField(18);
         txtEmail = new JTextField(18);
-        btnNuevo = new JButton("Nuevo");
-        btnGuardar = new JButton("Guardar");
-        btnCancelar = new JButton("Cancelar");
-        pBotones = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));
         pCampos = new JPanel(new GridBagLayout());
         insetFields = new Insets(10, 10, 3, 3);
     }
@@ -99,124 +77,50 @@ public class PanelPersona extends JPanel {
         addComponentGBLayout(pCampos, new JLabel("Email:"), 0, 16, GridBagConstraints.EAST, insetFields);
         addComponentGBLayout(pCampos, txtEmail, 1, 16, GridBagConstraints.NONE, GridBagConstraints.WEST, insetFields);
     }
-    
+
     public JTextField getTxtId() {
         return txtId;
-    }
-
-    public void setTxtId(JTextField txtId) {
-        this.txtId = txtId;
     }
 
     public JTextField getTxtNombre() {
         return txtNombre;
     }
 
-    public void setTxtNombre(JTextField txtNombre) {
-        this.txtNombre = txtNombre;
-    }
-
     public JTextField getTxtAPaterno() {
         return txtAPaterno;
-    }
-
-    public void setTxtAPaterno(JTextField txtAPaterno) {
-        this.txtAPaterno = txtAPaterno;
     }
 
     public JTextField getTxtAMaterno() {
         return txtAMaterno;
     }
 
-    public void setTxtAMaterno(JTextField txtAMaterno) {
-        this.txtAMaterno = txtAMaterno;
-    }
-
     public JComboBox<String> getJcDoc() {
         return jcDoc;
-    }
-
-    public void setJcDoc(JComboBox<String> jcDoc) {
-        this.jcDoc = jcDoc;
     }
 
     public JTextField getTxtNumDoc() {
         return txtNumDoc;
     }
 
-    public void setTxtNumDoc(JTextField txtNumDoc) {
-        this.txtNumDoc = txtNumDoc;
-    }
-
     public JTextField getTxtDireccion() {
         return txtDireccion;
-    }
-
-    public void setTxtDireccion(JTextField txtDireccion) {
-        this.txtDireccion = txtDireccion;
     }
 
     public JTextField getTxtTelefono() {
         return txtTelefono;
     }
 
-    public void setTxtTelefono(JTextField txtTelefono) {
-        this.txtTelefono = txtTelefono;
-    }
-
     public JTextField getTxtEmail() {
         return txtEmail;
-    }
-
-    public void setTxtEmail(JTextField txtEmail) {
-        this.txtEmail = txtEmail;
-    }
-
-    public JButton getBtnNuevo() {
-        return btnNuevo;
-    }
-
-    public void setBtnNuevo(JButton btnNuevo) {
-        this.btnNuevo = btnNuevo;
-    }
-
-    public JButton getBtnGuardar() {
-        return btnGuardar;
-    }
-
-    public void setBtnGuardar(JButton btnGuardar) {
-        this.btnGuardar = btnGuardar;
-    }
-
-    public JButton getBtnCancelar() {
-        return btnCancelar;
-    }
-
-    public void setBtnCancelar(JButton btnCancelar) {
-        this.btnCancelar = btnCancelar;
-    }
-
-    public JPanel getpBotones() {
-        return pBotones;
-    }
-
-    public void setpBotones(JPanel pBotones) {
-        this.pBotones = pBotones;
-    }
-
-    public JPanel getpCampos() {
-        return pCampos;
     }
 
     public Insets getInsetFields() {
         return insetFields;
     }
 
-    public void setInsetFields(Insets insetFields) {
-        this.insetFields = insetFields;
+    public JPanel getpCampos() {
+        return pCampos;
     }
-
-    public void setpCampos(JPanel pCampos) {
-        this.pCampos = pCampos;
-    }
+    
+    
 }

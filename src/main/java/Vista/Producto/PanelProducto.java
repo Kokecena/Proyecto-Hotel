@@ -21,6 +21,7 @@ public class PanelProducto extends JInternalFrame {
 
     private PanelRegistroProducto pRegistroProducto;
     private PanelTabla pListadoProducto;
+    private final Dimension TAMANO_TABLA = new Dimension(500,300);
     private JPanel pRegistroListado;
     
     public PanelProducto() {
@@ -42,6 +43,7 @@ public class PanelProducto extends JInternalFrame {
     private void initComponents() {
         pRegistroProducto = new PanelRegistroProducto("Registro de producto",new Dimension(300,800));
         pListadoProducto = new PanelTabla("Listado de productos",new String[]{"Test 1","Test 2","Test 3","Test 4"});
+        pListadoProducto.setPreferredSize(TAMANO_TABLA);
         pRegistroListado = new JPanel();
         pRegistroListado.setLayout(new BoxLayout(pRegistroListado, BoxLayout.X_AXIS));
         pRegistroListado.add(pRegistroProducto);

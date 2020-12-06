@@ -3,42 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Reserva;
+package Vista.ReservasConsumos;
 
 import java.awt.BorderLayout;
 import javax.swing.Box;
-import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
 /**
  *
  * @author jovan
  */
-public class PanelReserva extends JInternalFrame {
-    
-    private PanelRegistroReserva pRegistroReserva;
-    
-    public PanelReserva(){
-        initFrame();
+public class PanelConsumo extends JPanel {
+    private PanelRegistroConsumo pRegistroCcnsumo;
+    public PanelConsumo(){
+        initPanel();
     }
-    
-    private void initFrame(){
-        setTitle("Reserva");
+
+    private void initPanel() {
         setLayout(new BorderLayout());
         initComponents();
-        setClosable(true);
-        setIconifiable(true);
-        setSize(380, 650);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        pack();
     }
 
     private void initComponents() {
-        pRegistroReserva = new PanelRegistroReserva();
+        pRegistroCcnsumo = new PanelRegistroConsumo();
         add(Box.createVerticalStrut(10), BorderLayout.NORTH);
         add(Box.createHorizontalStrut(10), BorderLayout.EAST);
-        add(pRegistroReserva, BorderLayout.CENTER);
+        add(pRegistroCcnsumo, BorderLayout.CENTER);
         add(Box.createHorizontalStrut(10), BorderLayout.WEST);
         add(Box.createVerticalStrut(10), BorderLayout.SOUTH);
     }
+
+    public PanelRegistroConsumo getpRegistroCcnsumo() {
+        return pRegistroCcnsumo;
+    }
+    
+    
 }

@@ -5,8 +5,10 @@
  */
 package Vista.Pagos;
 
-import Vista.Reserva.PanelRegistroReserva;
+import Vista.Formularios.PanelTabla;
+import Vista.ReservasConsumos.PanelRegistroReserva;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JInternalFrame;
@@ -19,8 +21,9 @@ import javax.swing.JPanel;
 public class PanelPagos extends JInternalFrame {
 
     private PanelRegistroPagos pRegistroPagos;
-    private PanelListadoPagos pListadoPagos;
-    private PanelListadoConsumos pListadoConsumos;
+    private PanelTabla pListadoPagos;
+    private PanelTabla pListadoConsumos;
+    private final Dimension TAMANO_TABLA = new Dimension(500,200);
     private JPanel pListados;
     private JPanel pVentana;
     private JPanel pCampos;
@@ -37,9 +40,9 @@ public class PanelPagos extends JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
-        setSize(380, 650);
+        //setSize(380, 650);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        //pack();
+        pack();
     }
     
     private void addComponents(){
@@ -58,8 +61,10 @@ public class PanelPagos extends JInternalFrame {
 
     private void initComponents() {
         pRegistroPagos = new PanelRegistroPagos();
-        pListadoPagos = new PanelListadoPagos();
-        pListadoConsumos = new PanelListadoConsumos();
+        pListadoPagos = new PanelTabla("Listado de pagos",new String[]{"Test 1", "Test 2", "Test 3", "Test 4"},PanelTabla.SIN_BOTONES);
+        pListadoConsumos = new PanelTabla("Listado de consumos",new String[]{"Test 1", "Test 2", "Test 3", "Test 4"},PanelTabla.SIN_BOTONES);
+        pListadoPagos.setPreferredSize(TAMANO_TABLA);
+        pListadoConsumos.setPreferredSize(TAMANO_TABLA);
         pListados = new JPanel();
         pCampos = new JPanel();
         pVentana = new JPanel();
@@ -71,11 +76,11 @@ public class PanelPagos extends JInternalFrame {
         return pRegistroPagos;
     }
 
-    public PanelListadoPagos getpListadoPagos() {
+    public PanelTabla getpListadoPagos() {
         return pListadoPagos;
     }
 
-    public PanelListadoConsumos getpListadoConsumos() {
+    public PanelTabla getpListadoConsumos() {
         return pListadoConsumos;
     }
     

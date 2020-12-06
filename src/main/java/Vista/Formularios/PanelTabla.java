@@ -6,6 +6,7 @@
 package Vista.Formularios;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -22,6 +23,11 @@ import javax.swing.table.DefaultTableModel;
  * @author jovan
  */
 public class PanelTabla extends JPanel {
+
+    public static final int CON_BOTONES_BUSQUEDA_ELIMINAR = 1;
+    public static final int CON_BOTON_ELIMINAR = 2;
+    public static final int CON_BOTON_BUSQUEDA = 3;
+    public static final int SIN_BOTONES = 0;
 
     private JTextField txtBuscar;
     private JButton btnBuscar;
@@ -40,42 +46,87 @@ public class PanelTabla extends JPanel {
         this.nombresColumnas = nombresColumnas;
         initMainPanel();
         initComponents();
-        addActionCommands();
     }
-    
-    
-    
+
+    public PanelTabla(String nombreTabla, String nombresColumnas[], int disposicionBotones) {
+        this.nombreTabla = nombreTabla;
+        this.nombresColumnas = nombresColumnas;
+        initMainPanel();
+        initComponents(disposicionBotones);
+    }
+
     private void initMainPanel() {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createTitledBorder(nombreTabla));
     }
 
     private void initComponents() {
-        txtBuscar = new JTextField(12);
         modelo = new DefaultTableModel(null, nombresColumnas);
-        tbl= new JTable(modelo);
+        tbl = new JTable(modelo);
         jsc = new JScrollPane(tbl);
-        btnBuscar = new JButton("Buscar");
-        btnEliminar = new JButton("Eliminar");
         etiRegistros = new JLabel("Registros: ");
-        addOptions();
+        initButtons(1);
         add(Box.createHorizontalStrut(7), BorderLayout.WEST);
         add(Box.createHorizontalStrut(7), BorderLayout.EAST);
         add(jsc, BorderLayout.CENTER);
         addRegisters();
     }
-    
-    private void addActionCommands(){
-        btnBuscar.setActionCommand("search");
-        btnEliminar.setActionCommand("delete");
+
+    private void initComponents(int disposicionBotones) {
+        modelo = new DefaultTableModel(null, nombresColumnas);
+        tbl = new JTable(modelo);
+        jsc = new JScrollPane(tbl);
+        etiRegistros = new JLabel("Registros: ");
+        initButtons(disposicionBotones);
+        add(Box.createHorizontalStrut(7), BorderLayout.WEST);
+        add(Box.createHorizontalStrut(7), BorderLayout.EAST);
+        add(jsc, BorderLayout.CENTER);
+        addRegisters();
     }
 
-    private void addOptions() {
-        panelOpciones = new JPanel(new FlowLayout());
-        panelOpciones.add(new JLabel("Buscar:"));
-        panelOpciones.add(txtBuscar);
-        panelOpciones.add(btnBuscar);
-        panelOpciones.add(btnEliminar);
+    private void initButtons(int disposicionBotones) {
+        switch (disposicionBotones) {
+            case 1:
+                txtBuscar = new JTextField(12);
+                btnBuscar = new JButton("Buscar");
+                btnEliminar = new JButton("Eliminar");
+                addOptions(new JLabel("Buscar:"), txtBuscar, btnBuscar, btnEliminar);
+                break;
+            case 2:
+                btnEliminar = new JButton("Eliminar");
+                addOptions(btnEliminar);
+                break;
+            case 3:
+                txtBuscar = new JTextField(12);
+                btnBuscar = new JButton("Buscar");
+                addOptions(new JLabel("Buscar:"), txtBuscar, btnBuscar);
+            default:
+        }
+        if (disposicionBotones != 0) {
+            addActionCommands(disposicionBotones);
+        }
+    }
+
+    private void addActionCommands(int botones) {
+        switch (botones) {
+            case 1:
+                btnBuscar.setActionCommand("search");
+                btnEliminar.setActionCommand("delete");
+                break;
+            case 2:
+                btnEliminar.setActionCommand("delete");
+                break;
+            case 3:
+                btnBuscar.setActionCommand("search");
+                break;
+        }
+    }
+
+    private void addOptions(Component... c) {
+        panelOpciones = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 5));
+        for (Component component : c) {
+            panelOpciones.add(component);
+        }
         add(panelOpciones, BorderLayout.NORTH);
     }
 
@@ -117,4 +168,3 @@ public class PanelTabla extends JPanel {
         return panelOpciones;
     }
 }
-

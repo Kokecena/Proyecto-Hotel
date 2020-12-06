@@ -1,6 +1,8 @@
 package Vista.Pagos;
 
+import Vista.Formularios.PanelRegistro;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author jovan
  */
-public class PanelRegistroPagos extends JPanel {
+public class PanelRegistroPagos extends PanelRegistro {
 
     private JTextField txtId;
     private JTextField txtIdReserva;
@@ -39,19 +41,15 @@ public class PanelRegistroPagos extends JPanel {
     private Insets inset;
 
     public PanelRegistroPagos() {
+        super("Registro de pagos",new Dimension(300,800));
         initComponents();
-        initMainPanel();
+        super.initMainPanel();
         initSubPanels();
     }
 
     private void initSubPanels() {
         addFields();
         addButtons();
-    }
-
-    private void initMainPanel() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(BorderFactory.createTitledBorder("Registro de Pagos"));
     }
 
     private void initComponents() {
@@ -71,19 +69,8 @@ public class PanelRegistroPagos extends JPanel {
         cbComprobante = new JComboBox(new String[]{"Boleto", "Factura", "Ticket", "Otro"});
         dcFechaEmision = new JDateChooser();
         dcFechaPago = new JDateChooser();
-        btnNuevo = new JButton("Nuevo");
-        btnGuardar = new JButton("Guardar");
-        btnCancelar = new JButton("Cancelar");
         pCampos = new JPanel(new GridBagLayout());
-        pBotones = new JPanel(new FlowLayout());
         inset = new Insets(5, 5, 0, 0);
-    }
-
-    private void addButtons() {
-        pBotones.add(btnNuevo);
-        pBotones.add(btnGuardar);
-        pBotones.add(btnCancelar);
-        add(pBotones);
     }
 
     private void addFields() {

@@ -1,11 +1,13 @@
 package Controlador;
 
-import Vista.Clientes.PanelClientes;
+import Vista.ClientesTrabajadores.PanelClientes;
+import Vista.ClientesTrabajadores.VentanaClientesTrabajadores;
 import Vista.Pagos.PanelPagos;
 import Vista.Producto.PanelProducto;
-import Vista.Reserva.PanelReserva;
+import Vista.ReservasConsumos.PanelReserva;
+import Vista.ReservasConsumos.VentanaReservasConsumos;
 import Vista.Sistema.VentanaSistema;
-import Vista.Trabajador.PanelTrabajador;
+import Vista.ClientesTrabajadores.PanelTrabajador;
 import Vista.habitacion.PanelHabitacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,30 +32,30 @@ public class Controlador implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.getMenu().getMiClientes()) {
-            PanelClientes pc = new PanelClientes();
-            vista.getEscritorio().add(pc);
-            pc.show();
+            VentanaClientesTrabajadores vct = new VentanaClientesTrabajadores();
+            vista.getEscritorio().add(vct);
+            vct.setVisible(true);
         }
         if (e.getSource() == vista.getMenu().getMiHabitaciones()) {
             PanelHabitacion ph = new PanelHabitacion();
             vista.getEscritorio().add(ph);
-            ph.show();
+            ph.setVisible(true);
 
         }
         if (e.getSource() == vista.getMenu().getMiProductos()) {
             PanelProducto pp = new PanelProducto();
             vista.getEscritorio().add(pp);
-            pp.show();
+            pp.setVisible(true);
         }
        if(e.getSource() == vista.getMenu().getMiReservasConsumos()){
-           PanelReserva pr = new PanelReserva();
-           vista.getEscritorio().add(pr);
-           pr.show();
+           VentanaReservasConsumos vrc = new VentanaReservasConsumos();
+           vista.getEscritorio().add(vrc);
+           vrc.setVisible(true);
        }
        if(e.getSource() == vista.getMenu().getMiPagos()){
            PanelPagos ppg = new PanelPagos();
            vista.getEscritorio().add(ppg);
-           ppg.show();
+           ppg.setVisible(true);
        }
        
     }
