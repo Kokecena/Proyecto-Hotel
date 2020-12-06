@@ -6,7 +6,6 @@
 package Vista.Pagos;
 
 import Vista.Formularios.PanelTabla;
-import Vista.ReservasConsumos.PanelRegistroReserva;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.Box;

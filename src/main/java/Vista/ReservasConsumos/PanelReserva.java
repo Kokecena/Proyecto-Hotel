@@ -7,7 +7,6 @@ package Vista.ReservasConsumos;
 
 import java.awt.BorderLayout;
 import javax.swing.Box;
-import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 
 /**

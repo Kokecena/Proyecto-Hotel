@@ -14,8 +14,10 @@ import javax.swing.JPanel;
  * @author jovan
  */
 public class PanelConsumo extends JPanel {
+
     private PanelRegistroConsumo pRegistroCcnsumo;
-    public PanelConsumo(){
+
+    public PanelConsumo() {
         initPanel();
     }
 
@@ -36,6 +38,5 @@ public class PanelConsumo extends JPanel {
     public PanelRegistroConsumo getpRegistroCcnsumo() {
         return pRegistroCcnsumo;
     }
-    
-    
+
 }

@@ -1,13 +1,10 @@
 package Controlador;
 
-import Vista.ClientesTrabajadores.PanelClientes;
 import Vista.ClientesTrabajadores.VentanaClientesTrabajadores;
 import Vista.Pagos.PanelPagos;
 import Vista.Producto.PanelProducto;
-import Vista.ReservasConsumos.PanelReserva;
 import Vista.ReservasConsumos.VentanaReservasConsumos;
 import Vista.Sistema.VentanaSistema;
-import Vista.ClientesTrabajadores.PanelTrabajador;
 import Vista.habitacion.PanelHabitacion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

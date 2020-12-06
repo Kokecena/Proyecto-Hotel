@@ -60,4 +60,9 @@ public class PanelProducto extends JInternalFrame {
         return pRegistroProducto;
     }
 
+    public PanelTabla getpListadoProducto() {
+        return pListadoProducto;
+    }
+
+    
 }

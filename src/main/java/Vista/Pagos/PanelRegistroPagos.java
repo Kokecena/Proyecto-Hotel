@@ -3,12 +3,9 @@ package Vista.Pagos;
 import Vista.Formularios.PanelRegistro;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -33,10 +30,6 @@ public class PanelRegistroPagos extends PanelRegistro {
     private JTextField txtTotalPago;
     private JDateChooser dcFechaEmision;
     private JDateChooser dcFechaPago;
-    private JButton btnNuevo;
-    private JButton btnGuardar;
-    private JButton btnCancelar;
-    private JPanel pBotones;
     private JPanel pCampos;
     private Insets inset;
 
@@ -156,18 +149,5 @@ public class PanelRegistroPagos extends PanelRegistro {
     public JDateChooser getDcFechaPago() {
         return dcFechaPago;
     }
-
-    public JButton getBtnNuevo() {
-        return btnNuevo;
-    }
-
-    public JButton getBtnGuardar() {
-        return btnGuardar;
-    }
-
-    public JButton getBtnCancelar() {
-        return btnCancelar;
-    }
-    
     
 }

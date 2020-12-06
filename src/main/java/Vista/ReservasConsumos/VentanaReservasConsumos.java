@@ -6,7 +6,6 @@
 package Vista.ReservasConsumos;
 
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 
 /**
@@ -45,4 +44,13 @@ public class VentanaReservasConsumos extends JInternalFrame {
         add(pestanas);
     }
 
+    public PanelReserva getPanelReserva() {
+        return panelReserva;
+    }
+
+    public PanelConsumo getPanelConsumo() {
+        return panelConsumo;
+    }
+
+    
 }

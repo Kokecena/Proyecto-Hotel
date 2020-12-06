@@ -5,8 +5,6 @@
  */
 package Vista.Sistema;
 
-import javax.swing.BoxLayout;
-import javax.swing.JDesktopPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;

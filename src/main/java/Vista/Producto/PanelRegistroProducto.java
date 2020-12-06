@@ -5,12 +5,7 @@
  */
 package Vista.Producto;
 
-import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,8 +24,6 @@ import java.awt.Insets;
  */
 public class PanelRegistroProducto extends PanelRegistro {
 
-    private JLabel etiUnidad;
-    private JLabel etiPrecio;
     private JTextField txtId;
     private JTextField txtNombre;
     private JTextArea txtDescripcion;
@@ -39,7 +32,6 @@ public class PanelRegistroProducto extends PanelRegistro {
     private JTextField txtPrecioVenta;
     private JPanel panelDatos;
     private JPanel panelDescripcion;
-    private JPanel panelPrecio;
 
     public PanelRegistroProducto(String nombreRegistro, Dimension dimension) {
         super(nombreRegistro, dimension);
@@ -54,8 +46,6 @@ public class PanelRegistroProducto extends PanelRegistro {
     }
 
     private void initComponents() {
-        etiUnidad = new JLabel("Unidad Medida:");
-        etiPrecio = new JLabel("Precio Venta:");
         txtId = new JTextField(3);
         txtId.setHorizontalAlignment(JTextField.CENTER);
         txtNombre = new JTextField(8);
@@ -106,10 +96,5 @@ public class PanelRegistroProducto extends PanelRegistro {
     public JTextField getTxtPrecioVenta() {
         return txtPrecioVenta;
     }
-
-    public JPanel getPanelDescripcion() {
-        return panelDescripcion;
-    }
-    
     
 }

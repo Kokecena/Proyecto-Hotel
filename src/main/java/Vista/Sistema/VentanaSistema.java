@@ -1,6 +1,5 @@
 package Vista.Sistema;
 
-import Metodos.Iconos;
 import Vista.ClientesTrabajadores.PanelClientes;
 import Vista.Producto.PanelProducto;
 import Vista.ClientesTrabajadores.PanelTrabajador;
@@ -8,15 +7,8 @@ import Vista.habitacion.PanelHabitacion;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DesktopManager;
-import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
