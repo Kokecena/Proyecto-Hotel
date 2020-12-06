@@ -77,7 +77,7 @@ public class PanelRegistroPagos extends PanelRegistro {
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Total Reserva:"), 0, 4, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtTotalReserva, 2, 4, GridBagConstraints.WEST, inset);
 
-        Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Habitacion:"), 0, 6, GridBagConstraints.EAST, inset);
+        Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Habitación:"), 0, 6, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtIdHabitacion, 2, 6, GridBagConstraints.WEST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtHabitacion, 4, 6, GridBagConstraints.WEST, inset);
 
