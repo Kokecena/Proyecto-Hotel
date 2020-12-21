@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  *
  * @author jovan
  */
-public class PanelPagos extends JInternalFrame {
+public class VentanaPagos extends JInternalFrame {
 
     private PanelRegistroPagos pRegistroPagos;
     private PanelTabla pListadoPagos;
@@ -28,7 +28,7 @@ public class PanelPagos extends JInternalFrame {
     private JPanel pVentana;
     private JPanel pCampos;
 
-    public PanelPagos() {
+    public VentanaPagos() {
         initFrame();
     }
 

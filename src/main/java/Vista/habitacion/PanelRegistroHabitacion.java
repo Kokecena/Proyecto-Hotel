@@ -23,14 +23,14 @@ public class PanelRegistroHabitacion extends PanelRegistro {
 
     private JTextField txtId;
     private JTextField txtNumero;
-    private JComboBox<Integer> jcPiso;
+    private JComboBox jcPiso;
     private JTextArea txaDescripcion;
     private JScrollPane jsDescripcion;
     private JTextArea txaCaracteristicas;
     private JScrollPane jsCaracteristicas;
     private JTextField txtPrecioDiario;
-    private JComboBox<String> jcEstado;
-    private JComboBox<String> jcTipo;
+    private JComboBox jcEstado;
+    private JComboBox jcTipo;
     private JPanel panelInformacion;
     private JPanel panelDescripcion;
     private JPanel panelEstado;
@@ -66,7 +66,7 @@ public class PanelRegistroHabitacion extends PanelRegistro {
         txaDescripcion.setLineWrap(true);
         jsCaracteristicas = new JScrollPane(txaCaracteristicas);
         jsDescripcion = new JScrollPane(txaDescripcion);
-        jcPiso = new JComboBox(new Integer[]{1, 2, 3, 4, 5, 6, 7});
+        jcPiso = new JComboBox(new String[]{"1", "2", "3", "4", "5", "6", "7"});
         jcEstado = new JComboBox(new String[]{"Disponible", "Ocupado", "Mantenimiento"});
         jcTipo = new JComboBox(new String[]{"Individual", "Matrimonial", "Familiar", "Presidencial"});
     }
@@ -141,6 +141,18 @@ public class PanelRegistroHabitacion extends PanelRegistro {
 
     public JComboBox<String> getJcTipo() {
         return jcTipo;
+    }
+
+    public JPanel getPanelInformacion() {
+        return panelInformacion;
+    }
+
+    public JPanel getPanelDescripcion() {
+        return panelDescripcion;
+    }
+
+    public JPanel getPanelEstado() {
+        return panelEstado;
     }
 
 }

@@ -18,14 +18,14 @@ import javax.swing.JPanel;
  *
  * @author jovan
  */
-public class PanelProducto extends JInternalFrame {
+public class VentanaProducto extends JInternalFrame {
 
     private PanelRegistroProducto pRegistroProducto;
     private PanelTabla pListadoProducto;
     private final Dimension TAMANO_TABLA = new Dimension(500,300);
     private JPanel pRegistroListado;
     
-    public PanelProducto() {
+    public VentanaProducto() {
         initFrame();
     }
 

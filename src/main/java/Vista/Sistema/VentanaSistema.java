@@ -2,14 +2,16 @@ package Vista.Sistema;
 
 import Metodos.Iconos;
 import Vista.ClientesTrabajadores.PanelClientes;
-import Vista.Producto.PanelProducto;
+import Vista.Producto.VentanaProducto;
 import Vista.ClientesTrabajadores.PanelTrabajador;
-import Vista.habitacion.PanelHabitacion;
+import Vista.habitacion.VentanaHabitacion;
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.ColorUIResource;
 
 /**
  *
@@ -17,8 +19,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class VentanaSistema {
 
-    private PanelHabitacion vHabitacion;
-    private PanelProducto vProducto;
+    private VentanaHabitacion vHabitacion;
+    private VentanaProducto vProducto;
     private PanelClientes vClientes;
     private PanelTrabajador vTrabajador;
     private JFrame ventana;
@@ -71,11 +73,11 @@ public class VentanaSistema {
         ventana.add(escritorio);
     }
 
-    public PanelHabitacion getvHabitacion() {
+    public VentanaHabitacion getvHabitacion() {
         return vHabitacion;
     }
 
-    public PanelProducto getvProducto() {
+    public VentanaProducto getvProducto() {
         return vProducto;
     }
 

@@ -13,13 +13,13 @@ import javax.swing.JPanel;
  *
  * @author jovan
  */
-public class PanelHabitacion extends JInternalFrame {
+public class VentanaHabitacion extends JInternalFrame {
 
     private PanelRegistroHabitacion pRegistro;
     private PanelTabla pListado;
     private JPanel pRegistroListado;
 
-    public PanelHabitacion() {
+    public VentanaHabitacion() {
         initFrame();
         initComponents();
     }
@@ -38,7 +38,7 @@ public class PanelHabitacion extends JInternalFrame {
 
     private void initComponents() {
         pRegistro = new PanelRegistroHabitacion("Registro de Habitaciones",new Dimension(300,800));
-        pListado = new PanelTabla("Listado de habitaciones",new String[]{"Test 1", "Test 2", "Test 3", "Test 4"});
+        pListado = new PanelTabla("Listado de habitaciones",new String[]{"ID", "Numero", "Piso", "Descripción","Caracteristicas","Precio diario","Estado","Tipo de habitación"});
         pRegistroListado = new JPanel();
         pRegistroListado.setLayout(new BoxLayout(pRegistroListado, BoxLayout.X_AXIS));
         pRegistroListado.add(pRegistro);

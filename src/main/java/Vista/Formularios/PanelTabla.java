@@ -61,8 +61,15 @@ public class PanelTabla extends JPanel {
     }
 
     private void initComponents() {
-        modelo = new DefaultTableModel(null, nombresColumnas);
-        tbl = new JTable(modelo);
+        modelo = new DefaultTableModel(null, nombresColumnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        tbl = new JTable();
+        tbl.setFocusable(false);
+        tbl.setModel(modelo);
         jsc = new JScrollPane(tbl);
         etiRegistros = new JLabel("Registros: ");
         initButtons(1);
@@ -73,7 +80,12 @@ public class PanelTabla extends JPanel {
     }
 
     private void initComponents(int disposicionBotones) {
-        modelo = new DefaultTableModel(null, nombresColumnas);
+        modelo = new DefaultTableModel(null, nombresColumnas) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         tbl = new JTable(modelo);
         jsc = new JScrollPane(tbl);
         etiRegistros = new JLabel("Registros: ");
@@ -131,7 +143,7 @@ public class PanelTabla extends JPanel {
     }
 
     private void addRegisters() {
-        panelRegistros = new JPanel(new FlowLayout(FlowLayout.RIGHT, 40, 5));
+        panelRegistros = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 7));
         panelRegistros.add(etiRegistros);
         add(panelRegistros, BorderLayout.SOUTH);
     }
