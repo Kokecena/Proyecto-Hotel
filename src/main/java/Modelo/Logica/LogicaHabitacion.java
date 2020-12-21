@@ -69,10 +69,8 @@ public class LogicaHabitacion {
             habitacion = obtenerDatos();
             boolean inserta = habitacion.getIdHabitacion() == 0;
             if (inserta) {
-                //Insertar
                 habitacionDao.insert(habitacion);
             } else {
-                //Actualizar
                 habitacionDao.update(habitacion);
             }
             actualizarTabla();
@@ -105,7 +103,7 @@ public class LogicaHabitacion {
             try {
                 habitacionDao.delete(habitacion);
                 conexion.commit();
-                Ayuda.ventanaMensaje(componente, "La habitacion con id " + idStr + " a sido eliminado", "Se ha eliminado con exito el registro", JOptionPane.INFORMATION_MESSAGE);
+                ventanaMensaje(componente, "La habitacion con id " + idStr + " a sido eliminado", "Se ha eliminado con exito el registro", JOptionPane.INFORMATION_MESSAGE);
                 limpiarCampos();
                 actualizarTabla();
             } catch (SQLException ex) {
