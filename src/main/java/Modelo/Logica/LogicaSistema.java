@@ -7,24 +7,19 @@ package Modelo.Logica;
 
 import Controlador.ControladorCliente;
 import Controlador.ControladorHabitacion;
-import Controlador.ControladorLogin;
 import Controlador.ControladorProducto;
 import Controlador.ControladorTrabajador;
-import Metodos.Ayuda;
-import static Modelo.Datos.Conexion.getConnection;
-import Modelo.Datos.TrabajadorDaoJDBC;
 import Modelo.domain.TrabajadorDTO;
 import Vista.ClientesTrabajadores.PanelClientes;
 import Vista.ClientesTrabajadores.PanelTrabajador;
-import Vista.Login.VentanaLogin;
 import Vista.Pagos.VentanaPagos;
 import Vista.Producto.VentanaProducto;
 import Vista.ReservasConsumos.VentanaReservasConsumos;
 import Vista.Sistema.VentanaSistema;
+import Vista.UsuarioActivo.UsuarioActivo;
 import Vista.habitacion.VentanaHabitacion;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,12 +27,14 @@ import javax.swing.JOptionPane;
  */
 public class LogicaSistema {
 
+    private TrabajadorDTO usuario;
     private VentanaSistema componente;
     private Connection conexion;
 
-    public LogicaSistema(VentanaSistema componente, Connection conexion) {
+    public LogicaSistema(VentanaSistema componente, Connection conexion, TrabajadorDTO usuario) {
         this.componente = componente;
         this.conexion = conexion;
+        this.usuario = usuario;
     }
 
     public void ventanaClientes() {
@@ -82,6 +79,28 @@ public class LogicaSistema {
         VentanaPagos ppg = new VentanaPagos();
         ppg.setVisible(true);
         componente.getEscritorio().add(ppg);
+    }
+
+    public void ventanaUsuario() {
+        UsuarioActivo ua = new UsuarioActivo(usuario);
+        componente.getEscritorio().add(ua);
+    }
+
+    public void permisosModificar(ActionListener e) {
+        if (usuario.getAcceso().equals("ADMINISTRADOR")) {
+            componente.getMenu().getMiClientes().addActionListener(e);
+            componente.getMenu().getMiHabitaciones().addActionListener(e);
+            componente.getMenu().getMiProductos().addActionListener(e);
+            componente.getMenu().getMiUsuariosAccesos().addActionListener(e);
+            componente.getMenu().getMiReservasConsumos().addActionListener(e);
+            componente.getMenu().getMiPagos().addActionListener(e);
+        } else {
+            componente.getMenu().getmArchivo().setEnabled(false);
+            componente.getMenu().getmConfiguraciones().setEnabled(false);
+            componente.getMenu().getMiClientes().addActionListener(e);
+            componente.getMenu().getMiReservasConsumos().addActionListener(e);
+            componente.getMenu().getMiPagos().addActionListener(e);
+        }
     }
 
 }

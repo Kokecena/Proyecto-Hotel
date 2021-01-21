@@ -1,11 +1,9 @@
 package Controlador;
 
 import Modelo.Logica.LogicaSistema;
-import Modelo.domain.TrabajadorDTO;
 import Vista.Sistema.VentanaSistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 
 /**
  *
@@ -15,12 +13,11 @@ public class Controlador implements ActionListener {
 
     private VentanaSistema vista;
     private LogicaSistema modelo;
-    private TrabajadorDTO usuario;
 
-    public Controlador(LogicaSistema modelo, VentanaSistema vista, TrabajadorDTO usuario) {
+    public Controlador(LogicaSistema modelo, VentanaSistema vista) {
         this.vista = vista;
         this.modelo = modelo;
-        this.usuario = usuario;
+        modelo.ventanaUsuario();
         actionListener(this);
     }
 
@@ -50,20 +47,7 @@ public class Controlador implements ActionListener {
     }
 
     private void actionListener(ActionListener e) {
-        if (usuario.getAcceso().equals("ADMINISTRADOR")) {
-            vista.getMenu().getMiClientes().addActionListener(e);
-            vista.getMenu().getMiHabitaciones().addActionListener(e);
-            vista.getMenu().getMiProductos().addActionListener(e);
-            vista.getMenu().getMiUsuariosAccesos().addActionListener(e);
-            vista.getMenu().getMiReservasConsumos().addActionListener(e);
-            vista.getMenu().getMiPagos().addActionListener(e);
-        } else {
-            vista.getMenu().getmArchivo().setEnabled(false);
-            vista.getMenu().getmConfiguraciones().setEnabled(false);
-            vista.getMenu().getMiClientes().addActionListener(e);
-            vista.getMenu().getMiReservasConsumos().addActionListener(e);
-            vista.getMenu().getMiPagos().addActionListener(e);
-        }
+        modelo.permisosModificar(e);
     }
 
 }

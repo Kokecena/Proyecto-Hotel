@@ -59,8 +59,8 @@ public class LogicaLogin {
 
     private void iniciarSistema(TrabajadorDTO trabajador) {
         VentanaSistema vista = new VentanaSistema();
-        LogicaSistema modelo = new LogicaSistema(vista, conexion);
-        Controlador c = new Controlador(modelo, vista, trabajador);
+        LogicaSistema modelo = new LogicaSistema(vista, conexion, trabajador);
+        Controlador c = new Controlador(modelo, vista);
     }
 
     private String validarDatos() {
