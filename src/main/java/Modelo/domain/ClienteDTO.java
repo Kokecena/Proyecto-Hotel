@@ -11,7 +11,7 @@ package Modelo.domain;
  */
 public class ClienteDTO extends PersonaDTO {
 
-    private int codigoCliente;
+    private String codigoCliente;
 
     public ClienteDTO() {
     }
@@ -20,21 +20,21 @@ public class ClienteDTO extends PersonaDTO {
         super(idPersona);
     }
 
-    public ClienteDTO(String nombre, String aPaterno, String aMaterno, String tipoDocumento, String numDocumento, String direccion, String telefono, String email, int codigoCliente) {
+    public ClienteDTO(String nombre, String aPaterno, String aMaterno, String tipoDocumento, String numDocumento, String direccion, String telefono, String email, String codigoCliente) {
         super(nombre, aPaterno, aMaterno, tipoDocumento, numDocumento, direccion, telefono, email);
         this.codigoCliente = codigoCliente;
     }
 
-    public ClienteDTO(int idPersona, String nombre, String aPaterno, String aMaterno, String tipoDocumento, String numDocumento, String direccion, String telefono, String email, int codigoCliente) {
+    public ClienteDTO(int idPersona, String nombre, String aPaterno, String aMaterno, String tipoDocumento, String numDocumento, String direccion, String telefono, String email, String codigoCliente) {
         super(idPersona, nombre, aPaterno, aMaterno, tipoDocumento, numDocumento, direccion, telefono, email);
         this.codigoCliente = codigoCliente;
     }
 
-    public int getCodigoCliente() {
+    public String getCodigoCliente() {
         return codigoCliente;
     }
 
-    public void setCodigoCliente(int codigoCliente) {
+    public void setCodigoCliente(String codigoCliente) {
         this.codigoCliente = codigoCliente;
     }
 

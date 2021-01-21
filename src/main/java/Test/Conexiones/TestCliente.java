@@ -12,7 +12,6 @@ import Modelo.domain.ClienteDTO;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author jovan
@@ -22,7 +21,7 @@ public class TestCliente {
     public static void main(String[] args) {
         Connection conexion = null;
         ClienteDAO cliente = null;
-        ClienteDTO cliente1 = new ClienteDTO("Jobanni", "Sanchez", "Hernandez", "INE", "3345", "CJON. QUIJOTE DE LA MANCHA", "73812349", "jovnni.narciso@gmail.com", 2);
+        ClienteDTO cliente1 = new ClienteDTO("Jobanni", "Sanchez", "Hernandez", "INE", "3345", "CJON. QUIJOTE DE LA MANCHA", "73812349", "jovnni.narciso@gmail.com", "2");
         try {
             conexion = Conexion.getConnection();
             if (conexion.getAutoCommit()) {

@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelo.Logica;
 
-import Metodos.Ayuda;
 import static Metodos.Ayuda.*;
 import Modelo.Datos.HabitacionDaoJDBC;
 import Modelo.domain.HabitacionDTO;
@@ -52,6 +46,7 @@ public class LogicaHabitacion {
                     habitacion.getIdHabitacion() == 0 ? "¡Registro con exito!"
                     : "¡Actualizacion con exito!",
                     JOptionPane.INFORMATION_MESSAGE);
+            activarBotones(false, 1);
         } catch (SQLException ex) {
             try {
                 ventanaMensaje(componente, ex.getMessage() + "\nHaciendo rollback...", "Ocurrio un error", JOptionPane.INFORMATION_MESSAGE);
@@ -80,6 +75,9 @@ public class LogicaHabitacion {
         }
     }
 
+    public void buscarHabitacion() {
+    }
+
     public void actualizarHabitacion() {
         int fila = componenteTabla.getTbl().getSelectedRow();
         DefaultTableModel modelo = componenteTabla.getModelo();
@@ -95,7 +93,7 @@ public class LogicaHabitacion {
     }
 
     public void borrarRegistro() {
-        if (Metodos.Ayuda.ventanaMensaje(componente, "¿Desea borrar este registro?", "Confirmar opción") == 0) {
+        if (Metodos.Ayuda.ventanaMensaje(componenteTabla, "¿Desea borrar este registro?", "Confirmar opción") == 0) {
             int fila = componenteTabla.getTbl().getSelectedRow();
             DefaultTableModel modelo = componenteTabla.getModelo();
             String idStr = String.valueOf(modelo.getValueAt(fila, 0));
@@ -103,11 +101,11 @@ public class LogicaHabitacion {
             try {
                 habitacionDao.delete(habitacion);
                 conexion.commit();
-                ventanaMensaje(componente, "La habitacion con id " + idStr + " a sido eliminado", "Se ha eliminado con exito el registro", JOptionPane.INFORMATION_MESSAGE);
+                ventanaMensaje(componenteTabla, "La habitacion con id " + idStr + " a sido eliminado", "Se ha eliminado con exito el registro", JOptionPane.INFORMATION_MESSAGE);
                 limpiarCampos();
                 actualizarTabla();
             } catch (SQLException ex) {
-                ventanaMensaje(componente, ex.getMessage() + "\nHaciendo rollback...", "Ocurrio un error", JOptionPane.INFORMATION_MESSAGE);
+                ventanaMensaje(componenteTabla, ex.getMessage() + "\nHaciendo rollback...", "Ocurrio un error", JOptionPane.INFORMATION_MESSAGE);
                 try {
                     conexion.rollback();
                 } catch (SQLException ex1) {

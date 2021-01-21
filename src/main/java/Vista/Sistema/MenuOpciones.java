@@ -86,7 +86,7 @@ public class MenuOpciones extends JMenuBar {
         mReservas = new JMenu("Reservas");
         mReservas.setIcon(Iconos.ICONO_MENU_RESERVAS);
         miReservasConsumos = new JMenuItem("Reservas y Consumos",Iconos.ICONO_SUBMENU_RESERVAS_Y_CONSUMOS);
-        miClientes = new JMenuItem("Clientes y Trabajadores",Iconos.ICONO_SUBMENU_CLIENTES_Y_TRABAJADORES);
+        miClientes = new JMenuItem("Clientes",Iconos.ICONO_SUBMENU_CLIENTES_Y_TRABAJADORES);
         miPagos = new JMenuItem("Pagos",Iconos.ICONO_SUBMENU_PAGOS);
         mConsultas = new JMenu("Consultas");
         mConsultas.setIcon(Iconos.ICONO_MENU_CONSULTAS);
@@ -99,8 +99,18 @@ public class MenuOpciones extends JMenuBar {
         mAyuda.setIcon(Iconos.ICONO_MENU_AYUDA);
         miAcercaDe = new JMenuItem("Acerca de...",Iconos.ICONO_SUBMENU_ACERCA_DE);
         miAyuda = new JMenuItem("Ayuda",Iconos.ICONO_SUBMENU_AYUDA);
+        addActionCommand();
     }
 
+    private void addActionCommand(){
+        miHabitaciones.setActionCommand("habitacion");
+        miProductos.setActionCommand("productos");
+        miClientes.setActionCommand("clientes");
+        miUsuariosAccesos.setActionCommand("trabajador");
+        miPagos.setActionCommand("pagos");
+        miReservasConsumos.setActionCommand("reservas");
+    }
+    
     public JMenu getmSistema() {
         return mSistema;
     }

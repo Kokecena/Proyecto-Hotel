@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
 public class Ayuda {
 
     private static Matcher matcher;
-    public static final Pattern COMPROBAR_NUMEROS_REALES = Pattern.compile("", Pattern.CASE_INSENSITIVE);
-    public static final Pattern COMPROBAR_NUMEROS_ENTEROS = Pattern.compile("", Pattern.CASE_INSENSITIVE);
+    public static final Pattern COMPROBAR_NUMEROS_REALES = Pattern.compile("[\\d.]+", Pattern.CASE_INSENSITIVE);
+    public static final Pattern COMPROBAR_NUMEROS_ENTEROS = Pattern.compile("\\d*", Pattern.CASE_INSENSITIVE);
     public static final Pattern COMPROBAR_EMAIL = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     public static String comprobarCampo(String txtCampo, String campo) {
@@ -69,5 +69,13 @@ public class Ayuda {
     public static int ventanaMensaje(Component c, String mensaje, String titulo) {
         String opciones[] = {"Si", "No"};
         return JOptionPane.showOptionDialog(c, mensaje, titulo, JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, opciones, opciones[0]);
+    }
+
+    public static String verPassword(char[] c) {
+        StringBuilder sb = new StringBuilder();
+        for (char letra : c) {
+            sb.append(letra);
+        }
+        return sb.toString();
     }
 }

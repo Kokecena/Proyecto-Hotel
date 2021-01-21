@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 public class Iconos {
 
     public static final ImageIcon FONDO_ESCRITORIO = new ImageIcon("src/main/java/Fondos/background1.jpg");
-    
+
     public static final ImageIcon ICONO_SISTEMA = new ImageIcon("src/main/java/Iconos/Botones/Icono.png");
 
     public static final ImageIcon ICONO_MENU_SISTEMA = new ImageIcon("src/main/java/Iconos/Menus/Sistema.png");
@@ -24,6 +24,8 @@ public class Iconos {
     public static final ImageIcon ICONO_MENU_CONFIGURACIONES = new ImageIcon("src/main/java/Iconos/Menus/Configuracion.png");
     public static final ImageIcon ICONO_MENU_HERRAMIENTAS = new ImageIcon("src/main/java/Iconos/Menus/Herramientas.png");
     public static final ImageIcon ICONO_MENU_AYUDA = new ImageIcon("src/main/java/Iconos/Menus/Ayuda.png");
+
+    public static final ImageIcon ICONO_USUARIO = new ImageIcon("src/main/java/Iconos/Ventanas/User.png");
 
     public static final ImageIcon ICONO_SUBMENU_HABITACIONES = new ImageIcon("src/main/java/Iconos/Ventanas/Habitaciones.png");
     public static final ImageIcon ICONO_SUBMENU_PRODUCTOS = new ImageIcon("src/main/java/Iconos/Ventanas/Productos.png");

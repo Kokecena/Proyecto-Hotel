@@ -11,6 +11,7 @@ import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,10 +28,12 @@ public class PanelTabla extends JPanel {
     public static final int CON_BOTONES_BUSQUEDA_ELIMINAR = 1;
     public static final int CON_BOTON_ELIMINAR = 2;
     public static final int CON_BOTON_BUSQUEDA = 3;
+    public static final int CON_COMBO_BOTONES_BUSQUEDA_ELIMINAR = 4;
     public static final int SIN_BOTONES = 0;
 
     private JTextField txtBuscar;
     private JButton btnBuscar;
+    private JComboBox opcionesCb;
     private JButton btnEliminar;
     private DefaultTableModel modelo;
     private JTable tbl;
@@ -53,6 +56,15 @@ public class PanelTabla extends JPanel {
         this.nombresColumnas = nombresColumnas;
         initMainPanel();
         initComponents(disposicionBotones);
+    }
+
+    public PanelTabla(String nombreTabla, String nombresColumnas[], int disposicionBotones, String[] opcionesCb) {
+        this.nombreTabla = nombreTabla;
+        this.nombresColumnas = nombresColumnas;
+        this.opcionesCb = new JComboBox(opcionesCb);
+        initMainPanel();
+        initComponents(disposicionBotones);
+
     }
 
     private void initMainPanel() {
@@ -97,40 +109,43 @@ public class PanelTabla extends JPanel {
     }
 
     private void initButtons(int disposicionBotones) {
-        switch (disposicionBotones) {
-            case 1:
-                txtBuscar = new JTextField(12);
-                btnBuscar = new JButton("Buscar");
-                btnEliminar = new JButton("Eliminar");
-                addOptions(new JLabel("Buscar:"), txtBuscar, btnBuscar, btnEliminar);
-                break;
-            case 2:
-                btnEliminar = new JButton("Eliminar");
-                addOptions(btnEliminar);
-                break;
-            case 3:
-                txtBuscar = new JTextField(12);
-                btnBuscar = new JButton("Buscar");
-                addOptions(new JLabel("Buscar:"), txtBuscar, btnBuscar);
-            default:
-        }
         if (disposicionBotones != 0) {
+            switch (disposicionBotones) {
+                case 1:
+                    txtBuscar = new JTextField(12);
+                    btnBuscar = new JButton("Buscar");
+                    btnEliminar = new JButton("Eliminar");
+                    addOptions(new JLabel("Buscar:"), txtBuscar, btnBuscar, btnEliminar);
+                    break;
+                case 2:
+                    btnEliminar = new JButton("Eliminar");
+                    addOptions(btnEliminar);
+                    break;
+                case 3:
+                    txtBuscar = new JTextField(12);
+                    btnBuscar = new JButton("Buscar");
+                    addOptions(new JLabel("Buscar:"), txtBuscar, btnBuscar);
+                case 4:
+                    txtBuscar = new JTextField(12);
+                    btnBuscar = new JButton("Buscar");
+                    btnEliminar = new JButton("Eliminar");
+                    addOptions(opcionesCb, new JLabel("Buscar:"), txtBuscar, btnBuscar, btnEliminar);
+            }
             addActionCommands(disposicionBotones);
         }
     }
 
     private void addActionCommands(int botones) {
         switch (botones) {
-            case 1:
-                btnBuscar.setActionCommand("search");
-                btnEliminar.setActionCommand("delete");
-                break;
             case 2:
                 btnEliminar.setActionCommand("delete");
                 break;
             case 3:
                 btnBuscar.setActionCommand("search");
                 break;
+            default:
+                btnBuscar.setActionCommand("search");
+                btnEliminar.setActionCommand("delete");
         }
     }
 
@@ -139,6 +154,7 @@ public class PanelTabla extends JPanel {
         for (Component component : c) {
             panelOpciones.add(component);
         }
+
         add(panelOpciones, BorderLayout.NORTH);
     }
 

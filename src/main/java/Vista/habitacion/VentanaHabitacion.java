@@ -38,7 +38,7 @@ public class VentanaHabitacion extends JInternalFrame {
 
     private void initComponents() {
         pRegistro = new PanelRegistroHabitacion("Registro de Habitaciones",new Dimension(300,800));
-        pListado = new PanelTabla("Listado de habitaciones",new String[]{"ID", "Numero", "Piso", "Descripción","Caracteristicas","Precio diario","Estado","Tipo de habitación"});
+        pListado = new PanelTabla("Listado de habitaciones",new String[]{"ID", "Numero", "Piso", "Descripción","Caracteristicas","Precio diario","Estado","Tipo de habitación"},PanelTabla.CON_COMBO_BOTONES_BUSQUEDA_ELIMINAR,new String[]{"ID","Estado","Tipo de habitación"});
         pRegistroListado = new JPanel();
         pRegistroListado.setLayout(new BoxLayout(pRegistroListado, BoxLayout.X_AXIS));
         pRegistroListado.add(pRegistro);

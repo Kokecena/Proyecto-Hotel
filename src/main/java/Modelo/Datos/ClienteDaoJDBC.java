@@ -56,7 +56,7 @@ public class ClienteDaoJDBC implements ClienteDAO {
             registroPersona = pst.executeUpdate();
 
             pst = cn.prepareStatement(SQL_INSERT_CLIENTE);
-            pst.setInt(1, cliente.getCodigoCliente());
+            pst.setString(1, cliente.getCodigoCliente());
             registroCliente = pst.executeUpdate();
         } finally {
             Conexion.close(pst);
@@ -84,7 +84,7 @@ public class ClienteDaoJDBC implements ClienteDAO {
             pst.setString(6, cliente.getDireccion());
             pst.setString(7, cliente.getTelefono());
             pst.setString(8, cliente.getEmail());
-            pst.setInt(9, cliente.getCodigoCliente());
+            pst.setString(9, cliente.getCodigoCliente());
             pst.setInt(10, cliente.getIdPersona());
             registros = pst.executeUpdate();
         } finally {
@@ -139,7 +139,7 @@ public class ClienteDaoJDBC implements ClienteDAO {
                 String direccion = rs.getString("direccion");
                 String telefono = rs.getString("telefono");
                 String email = rs.getString("email");
-                int codigoCliente = rs.getInt("codigo_cliente");
+                String codigoCliente = rs.getString("codigo_cliente");
                 cliente = new ClienteDTO(id, nombre, aPaterno, aMaterno, tipoDocumento, numDocumento, direccion, telefono, email, codigoCliente);
                 clientes.add(cliente);
             }

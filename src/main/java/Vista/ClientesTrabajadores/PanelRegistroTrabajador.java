@@ -1,5 +1,6 @@
 package Vista.ClientesTrabajadores;
 
+import Vista.ClientesTrabajadores.PanelPersona;
 import static Metodos.GBCMetodos.addComponentGBLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

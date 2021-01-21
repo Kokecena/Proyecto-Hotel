@@ -44,7 +44,7 @@ public class VentanaProducto extends JInternalFrame {
 
     private void initComponents() {
         pRegistroProducto = new PanelRegistroProducto("Registro de producto",new Dimension(300,800));
-        pListadoProducto = new PanelTabla("Listado de productos",new String[]{"Test 1","Test 2","Test 3","Test 4"});
+        pListadoProducto = new PanelTabla("Listado de productos",new String[]{"ID","Nombre","Descripcion","Unidad de medida","Precio en Venta"},PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR);
         pListadoProducto.setPreferredSize(TAMANO_TABLA);
         pRegistroListado = new JPanel();
         pRegistroListado.setLayout(new BoxLayout(pRegistroListado, BoxLayout.X_AXIS));

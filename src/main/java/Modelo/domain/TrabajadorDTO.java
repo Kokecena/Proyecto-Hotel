@@ -42,6 +42,11 @@ public class TrabajadorDTO extends PersonaDTO {
         this.estado = estado;
     }
 
+    public TrabajadorDTO(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     public double getSueldo() {
         return sueldo;
     }

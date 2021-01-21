@@ -5,8 +5,8 @@
  */
 package Controlador;
 
-import Modelo.Logica.LogicaHabitacion;
-import Vista.habitacion.VentanaHabitacion;
+import Modelo.Logica.LogicaTrabajador;
+import Vista.ClientesTrabajadores.PanelTrabajador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -16,25 +16,25 @@ import java.awt.event.MouseEvent;
  *
  * @author jovan
  */
-public class ControladorHabitacion implements ActionListener {
-
-    private VentanaHabitacion vista;
-    private LogicaHabitacion modelo;
+public class ControladorTrabajador implements ActionListener {
+    private PanelTrabajador vista;
+    private LogicaTrabajador modelo;
 
     private class SeleccionarFila extends MouseAdapter {
+
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
-            modelo.actualizarHabitacion();
+            modelo.actualizarTrabajador();
         }
     }
 
-    public ControladorHabitacion(LogicaHabitacion modelo, VentanaHabitacion vista) {
+    public ControladorTrabajador(LogicaTrabajador modelo, PanelTrabajador vista) {
         this.vista = vista;
         this.modelo = modelo;
         actionListener(this);
         mouseListener();
-        modelo.activarBotones(false,1);
+        modelo.activarBotones(false, 1);
         modelo.actualizarTabla();
     }
 
@@ -43,31 +43,30 @@ public class ControladorHabitacion implements ActionListener {
         String command = e.getActionCommand();
         switch (command) {
             case "new":
-                modelo.activarBotones(true,1);
+                modelo.activarBotones(true, 1);
                 break;
             case "save":
-                modelo.nuevaHabitacion();
+                modelo.nuevoTrabajador();
                 break;
             case "delete":
                 System.out.println("Borrar");
                 modelo.borrarRegistro();
                 break;
             case "cancel":
-                modelo.activarBotones(false,1);
+                modelo.activarBotones(false, 1);
                 modelo.limpiarCampos();
                 break;
         }
     }
 
     private void actionListener(ActionListener e) {
-        vista.getpListado().getBtnEliminar().addActionListener(e);
-        vista.getpRegistro().getBtnNuevo().addActionListener(e);
-        vista.getpRegistro().getBtnGuardar().addActionListener(e);
-        vista.getpRegistro().getBtnCancelar().addActionListener(e);
+        vista.getpListadoTrabajador().getBtnEliminar().addActionListener(e);
+        vista.getpRegistroTrabajador().getBtnNuevo().addActionListener(e);
+        vista.getpRegistroTrabajador().getBtnGuardar().addActionListener(e);
+        vista.getpRegistroTrabajador().getBtnCancelar().addActionListener(e);
     }
 
     private void mouseListener() {
-        vista.getpListado().getTbl().addMouseListener(new SeleccionarFila());
+        vista.getpListadoTrabajador().getTbl().addMouseListener(new SeleccionarFila());
     }
-    
 }

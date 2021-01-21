@@ -28,26 +28,17 @@ public class VentanaSistema {
     private JDesktopPane escritorio;
 
     public VentanaSistema() {
-        initLookAndFeel();
         initComponents();
         initFrame();
         addMenu();
         addDesktop();
     }
 
-    private void initLookAndFeel() {
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        try {
-            UIManager.setLookAndFeel(new com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme());
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace(System.out);
-        }
-    }
-
     private void initFrame() {
         ventana.setIconImage(Iconos.ICONO_SISTEMA.getImage());
         ventana.setTitle("Sistema Hotelero");
         ventana.setSize(1000, 700);
+        ventana.setVisible(true);
         ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
         ventana.setLocationRelativeTo(null);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

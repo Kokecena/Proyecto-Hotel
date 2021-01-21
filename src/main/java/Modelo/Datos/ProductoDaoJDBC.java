@@ -22,10 +22,10 @@ public class ProductoDaoJDBC implements ProductoDAO {
 
     private Connection conexionTransaccional;
 
-    private static final String SQL_INSERT = "INSERT INTO productos (nombre, descripcion, unidad_medida, precio_venta) VALUES (?, ?, ?, ?)";
-    private static final String SQL_UPDATE = "UPDATE productos SET nombre = ?, descripcion = ?, unidad_medida = ?, precio_venta = ? WHERE idproducto = ?";
-    private static final String SQL_DELETE = "DELETE FROM productos WHERE idproducto = ?";
-    private static final String SQL_SELECT = "SELECT idproducto, nombre, descripcion, unidad_medida, precio_venta FROM productos";
+    private static final String SQL_INSERT = "INSERT INTO producto (nombre, descripcion, unidad_medida, precio_venta) VALUES (?, ?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE producto SET nombre = ?, descripcion = ?, unidad_medida = ?, precio_venta = ? WHERE idproducto = ?";
+    private static final String SQL_DELETE = "DELETE FROM producto WHERE idproducto = ?";
+    private static final String SQL_SELECT = "SELECT idproducto, nombre, descripcion, unidad_medida, precio_venta FROM producto";
 
     public ProductoDaoJDBC() {
     }
