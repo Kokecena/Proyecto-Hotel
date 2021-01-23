@@ -6,7 +6,7 @@
 package Controlador;
 
 import Modelo.Logica.LogicaCliente;
-import Vista.ClientesTrabajadores.PanelClientes;
+import Vista.ClientesTrabajadores.VentanaClientes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -18,7 +18,7 @@ import java.awt.event.MouseEvent;
  */
 public class ControladorCliente implements ActionListener {
 
-    private PanelClientes vista;
+    private VentanaClientes vista;
     private LogicaCliente modelo;
 
     private class SeleccionarFila extends MouseAdapter {
@@ -30,7 +30,7 @@ public class ControladorCliente implements ActionListener {
         }
     }
 
-    public ControladorCliente(LogicaCliente modelo, PanelClientes vista) {
+    public ControladorCliente(LogicaCliente modelo, VentanaClientes vista) {
         this.vista = vista;
         this.modelo = modelo;
         actionListener(this);

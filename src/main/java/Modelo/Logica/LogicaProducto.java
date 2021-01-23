@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import static Metodos.Ayuda.*;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,11 +55,13 @@ public class LogicaProducto {
             } catch (SQLException ex1) {
                 ex.printStackTrace(System.out);
             }
+        } catch (Exception ex) {
+            ventanaMensaje(componente, ex.getMessage(), "¡ERROR!", JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
-    private void insertarProducto() throws SQLException {
+    private void insertarProducto() throws SQLException, Exception {
         String error = comprobarCampos();
         if (error.isEmpty()) {
             producto = obtenerDatos();
@@ -70,7 +74,7 @@ public class LogicaProducto {
             actualizarTabla();
             limpiarCampos();
         } else {
-            ventanaMensaje(componente, error, "¡ERROR!", JOptionPane.ERROR_MESSAGE);
+            throw new Exception(error);
         }
     }
 

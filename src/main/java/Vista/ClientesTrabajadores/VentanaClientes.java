@@ -1,7 +1,6 @@
 package Vista.ClientesTrabajadores;
 
 import Metodos.Iconos;
-import Vista.ClientesTrabajadores.PanelRegistroTrabajador;
 import Vista.Formularios.PanelTabla;
 import java.awt.BorderLayout;
 import javax.swing.Box;
@@ -14,21 +13,21 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  *
  * @author jovan
  */
-public class PanelTrabajador extends JInternalFrame {
+public class VentanaClientes extends JInternalFrame {
 
-    private PanelRegistroTrabajador pRegistroTrabajador;
-    private PanelTabla pListadoTrabajador;
+    private PanelRegistroCliente pRegistroCliente;
+    private PanelTabla pListadoClientes;
     private JPanel pRegistroListado;
 
-    public PanelTrabajador() {
+    public VentanaClientes() {
         setLayout(new BorderLayout());
         initComponents();
         initFrame();
     }
-    
+
     private void initFrame() {
-        setTitle("Trabajadores");
-        setFrameIcon(Iconos.ICONO_PESTANA_TRABAJADORES);
+        setTitle("Clientes");
+        setFrameIcon(Iconos.ICONO_PESTANA_CLIENTES);
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
@@ -37,13 +36,13 @@ public class PanelTrabajador extends JInternalFrame {
     }
 
     private void initComponents() {
-        pRegistroTrabajador = new PanelRegistroTrabajador();
-        pListadoTrabajador = new PanelTabla("Listado trabajadores", new String[]{"ID", "Nombre", "A. Paterno", "A. Materno", "Tipo documento", "Numero documento", "Direccion", "Telefono", "Email", "Sueldo", "Acceso", "Login", "Password", "Estado"}, PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR);
+        pRegistroCliente = new PanelRegistroCliente();
+        pListadoClientes = new PanelTabla("Listado clientes", new String[]{"ID", "Nombre", "A. Paterno", "A. Materno", "Tipo documento", "Numero documento", "Direccion", "Telefono", "Email", "Codigo cliente"}, PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR);
         pRegistroListado = new JPanel();
         pRegistroListado.setLayout(new BoxLayout(pRegistroListado, BoxLayout.X_AXIS));
-        pRegistroListado.add(pRegistroTrabajador);
+        pRegistroListado.add(pRegistroCliente);
         pRegistroListado.add(Box.createHorizontalStrut(10));
-        pRegistroListado.add(pListadoTrabajador);
+        pRegistroListado.add(pListadoClientes);
         add(Box.createVerticalStrut(10), BorderLayout.NORTH);
         add(Box.createHorizontalStrut(10), BorderLayout.EAST);
         add(pRegistroListado, BorderLayout.CENTER);
@@ -51,12 +50,12 @@ public class PanelTrabajador extends JInternalFrame {
         add(Box.createVerticalStrut(10), BorderLayout.SOUTH);
     }
 
-    public PanelRegistroTrabajador getpRegistroTrabajador() {
-        return pRegistroTrabajador;
+    public PanelRegistroCliente getpRegistroCliente() {
+        return pRegistroCliente;
     }
 
-    public PanelTabla getpListadoTrabajador() {
-        return pListadoTrabajador;
+    public PanelTabla getpListadoClientes() {
+        return pListadoClientes;
     }
 
 }

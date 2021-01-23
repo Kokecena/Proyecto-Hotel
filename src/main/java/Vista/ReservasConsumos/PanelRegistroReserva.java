@@ -7,6 +7,7 @@ package Vista.ReservasConsumos;
 
 import Vista.Formularios.PanelRegistro;
 import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -16,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -23,7 +26,7 @@ import javax.swing.JTextField;
  * @author jovan
  */
 public class PanelRegistroReserva extends PanelRegistro {
-
+    
     private JTextField txtId;
     private JTextField txtIdHabitacion;
     private JTextField txtIdCliente;
@@ -32,6 +35,8 @@ public class PanelRegistroReserva extends PanelRegistro {
     private JTextField txtCliente;
     private JTextField txtTrabajador;
     private JTextField txtCosto;
+    private JTextArea txtObservacion;
+    private JScrollPane jcObservacion;
     private JButton btnBuscarHabitacion;
     private JButton btnBuscarCliente;
     private JComboBox<String> cbTipoReserva;
@@ -44,12 +49,12 @@ public class PanelRegistroReserva extends PanelRegistro {
     private Font fontDc;
     
     public PanelRegistroReserva() {
-        super("Registro de reservas", new Dimension(300,800));
+        super("Registro de reservas", new Dimension(300, 800));
         initComponents();
         super.initMainPanel();
         initSubPanels();
     }
-
+    
     private void initComponents() {
         txtId = new JTextField(2);
         txtId.setHorizontalAlignment(JTextField.CENTER);
@@ -63,46 +68,52 @@ public class PanelRegistroReserva extends PanelRegistro {
         txtCliente = new JTextField(15);
         txtTrabajador = new JTextField(15);
         txtCosto = new JTextField();
+        txtObservacion = new JTextArea(5, 10);
+        txtObservacion.setLineWrap(true);
+        jcObservacion = new JScrollPane(txtObservacion);
         btnBuscarHabitacion = new JButton("...");
+        btnBuscarHabitacion.setActionCommand("buscarh");
         btnBuscarCliente = new JButton("...");
+        btnBuscarCliente.setActionCommand("buscarc");
         cbTipoReserva = new JComboBox(new String[]{"Reserva", "Alquiler"});
         cbEstadoReserva = new JComboBox(new String[]{"Alquiler", "Pagada", "Anulada"});
-        fontDc = new Font("Arial",Font.PLAIN,11);
+        fontDc = new Font("Arial", Font.PLAIN, 11);
         dcReserva = new JDateChooser();
         dcReserva.setFont(fontDc);
         dcIngreso = new JDateChooser();
+        dcIngreso.setFont(fontDc);
         dcSalida = new JDateChooser();
+        dcSalida.setFont(fontDc);
         pCampos = new JPanel(new GridBagLayout());
         inset = new Insets(10, 10, 0, 0);
     }
-
-
+    
     private void initSubPanels() {
         addFields();
         addButtons();
     }
-
+    
     private void addFields() {
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("ID:"), 0, 0, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtId, 2, 0, GridBagConstraints.EAST, inset);
-
+        
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Habitacion:"), 0, 2, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtIdHabitacion, 2, 2, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtNumero, 4, 2, GridBagConstraints.WEST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, btnBuscarHabitacion, 6, 2, GridBagConstraints.EAST, inset);
-
+        
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Cliente:"), 0, 4, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtIdCliente, 2, 4, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtCliente, 4, 4, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, btnBuscarCliente, 6, 4, GridBagConstraints.EAST, inset);
-
+        
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Trabajador:"), 0, 6, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtIdTrabajador, 2, 6, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtTrabajador, 4, 6, GridBagConstraints.EAST, inset);
         
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Tipo Reserva:"), 0, 8, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, cbTipoReserva, 4, 8, GridBagConstraints.WEST, inset);
-
+        
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Fecha Reserva:"), 0, 10, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, dcReserva, 4, 10, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, inset);
         
@@ -115,71 +126,77 @@ public class PanelRegistroReserva extends PanelRegistro {
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Costo:"), 0, 16, GridBagConstraints.EAST, inset);
         Metodos.GBCMetodos.addComponentGBLayout(pCampos, txtCosto, 4, 16, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, inset);
         
-        Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Estado Reserva:"), 0, 18, GridBagConstraints.EAST, inset);
-        Metodos.GBCMetodos.addComponentGBLayout(pCampos, cbEstadoReserva, 4, 18, GridBagConstraints.WEST, inset);
+        Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Observación:"), 0, 18, GridBagConstraints.EAST, inset);
+        Metodos.GBCMetodos.addComponentGBLayout(pCampos, jcObservacion, 4, 18, GridBagConstraints.HORIZONTAL, GridBagConstraints.CENTER, inset);
+        
+        Metodos.GBCMetodos.addComponentGBLayout(pCampos, new JLabel("Estado Reserva:"), 0, 20, GridBagConstraints.EAST, inset);
+        Metodos.GBCMetodos.addComponentGBLayout(pCampos, cbEstadoReserva, 4, 20, GridBagConstraints.WEST, inset);
         
         add(pCampos);
     }
-
+    
     public JTextField getTxtId() {
         return txtId;
     }
-
+    
     public JTextField getTxtIdHabitacion() {
         return txtIdHabitacion;
     }
-
+    
     public JTextField getTxtIdCliente() {
         return txtIdCliente;
     }
-
+    
     public JTextField getTxtIdTrabajador() {
         return txtIdTrabajador;
     }
-
+    
     public JTextField getTxtNumero() {
         return txtNumero;
     }
-
+    
     public JTextField getTxtCliente() {
         return txtCliente;
     }
-
+    
     public JTextField getTxtTrabajador() {
         return txtTrabajador;
     }
-
+    
     public JTextField getTxtCosto() {
         return txtCosto;
     }
-
+    
     public JButton getBtnBuscarHabitacion() {
         return btnBuscarHabitacion;
     }
-
+    
     public JButton getBtnBuscarCliente() {
         return btnBuscarCliente;
     }
-
+    
     public JComboBox<String> getCbTipoReserva() {
         return cbTipoReserva;
     }
-
+    
     public JComboBox<String> getCbEstadoReserva() {
         return cbEstadoReserva;
     }
-
+    
     public JDateChooser getDcReserva() {
         return dcReserva;
     }
-
+    
     public JDateChooser getDcIngreso() {
         return dcIngreso;
     }
-
+    
     public JDateChooser getDcSalida() {
         return dcSalida;
     }
-    
+
+    public JTextArea getTxtObservacion() {
+        return txtObservacion;
+    }
     
 }

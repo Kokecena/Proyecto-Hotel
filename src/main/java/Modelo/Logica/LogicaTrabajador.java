@@ -10,11 +10,13 @@ import static Metodos.Ayuda.*;
 import Modelo.Datos.TrabajadorDaoJDBC;
 import Modelo.domain.TrabajadorDTO;
 import Vista.ClientesTrabajadores.PanelRegistroTrabajador;
-import Vista.ClientesTrabajadores.PanelTrabajador;
+import Vista.ClientesTrabajadores.VentanaTrabajador;
 import Vista.Formularios.PanelTabla;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,7 +43,7 @@ public class LogicaTrabajador {
     private final PanelRegistroTrabajador componente;
     private final PanelTabla componenteTabla;
 
-    public LogicaTrabajador(PanelTrabajador componente, Connection conexion) {
+    public LogicaTrabajador(VentanaTrabajador componente, Connection conexion) {
         this.componente = componente.getpRegistroTrabajador();
         this.componenteTabla = componente.getpListadoTrabajador();
         this.conexion = conexion;
@@ -66,11 +68,13 @@ public class LogicaTrabajador {
             } catch (SQLException ex1) {
                 ex.printStackTrace(System.out);
             }
+        } catch (Exception ex) {
+            ventanaMensaje(componente, ex.getMessage(), "¡ERROR!", JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
-    private void insertarTrabajador() throws SQLException {
+    private void insertarTrabajador() throws SQLException, Exception {
         String error = comprobarCampos();
         if (error.isEmpty()) {
             trabajador = obtenerDatos();
@@ -83,7 +87,7 @@ public class LogicaTrabajador {
             actualizarTabla();
             limpiarCampos();
         } else {
-            ventanaMensaje(componente, error, "¡ERROR!", JOptionPane.ERROR_MESSAGE);
+            throw new Exception(error);
         }
     }
 

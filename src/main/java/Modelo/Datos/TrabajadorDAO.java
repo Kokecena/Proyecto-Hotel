@@ -22,4 +22,7 @@ public interface TrabajadorDAO {
     int delete(TrabajadorDTO trabajador) throws SQLException;
 
     List<TrabajadorDTO> select() throws SQLException;
+
+    TrabajadorDTO userSearch(String user) throws SQLException;
+    
 }

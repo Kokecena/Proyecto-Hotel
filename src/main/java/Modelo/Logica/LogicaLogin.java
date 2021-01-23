@@ -33,7 +33,7 @@ public class LogicaLogin {
     public void iniciarSesion() {
         String user = componente.getTxtUsuario().getText();
         try {
-            trabajador = trabajadorDao.search(user);
+            trabajador = trabajadorDao.userSearch(user);
             comprobarUsuario();
         } catch (SQLException ex) {
             ventanaMensaje(componente, ex.getMessage(), "No se pudo conectar a la base de datos...", JOptionPane.ERROR_MESSAGE);

@@ -9,6 +9,8 @@ import Vista.habitacion.VentanaHabitacion;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -54,11 +56,13 @@ public class LogicaHabitacion {
             } catch (SQLException ex1) {
                 ex.printStackTrace(System.out);
             }
+        } catch (Exception ex) {
+            ventanaMensaje(componente, ex.getMessage(), "¡ERROR!", JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
-    private void insertarHabitacion() throws SQLException {
+    private void insertarHabitacion() throws SQLException, Exception {
         String error = comprobarCampos();
         if (error.isEmpty()) {
             habitacion = obtenerDatos();
@@ -71,7 +75,7 @@ public class LogicaHabitacion {
             actualizarTabla();
             limpiarCampos();
         } else {
-            ventanaMensaje(componente, error, "¡ERROR!", JOptionPane.ERROR_MESSAGE);
+            throw new Exception(error);
         }
     }
 

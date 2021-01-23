@@ -28,6 +28,13 @@ public class PersonaDTO {
         this.idPersona = idPersona;
     }
 
+    public PersonaDTO(int idPersona, String nombre, String aPaterno, String aMaterno) {
+        this.idPersona = idPersona;
+        this.nombre = nombre;
+        this.aPaterno = aPaterno;
+        this.aMaterno = aMaterno;
+    }
+
     public PersonaDTO(String nombre, String aPaterno, String aMaterno, String tipoDocumento, String numDocumento, String direccion, String telefono, String email) {
         this.nombre = nombre;
         this.aPaterno = aPaterno;

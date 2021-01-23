@@ -1,9 +1,9 @@
 package Vista.Sistema;
 
 import Metodos.Iconos;
-import Vista.ClientesTrabajadores.PanelClientes;
+import Vista.ClientesTrabajadores.VentanaClientes;
 import Vista.Producto.VentanaProducto;
-import Vista.ClientesTrabajadores.PanelTrabajador;
+import Vista.ClientesTrabajadores.VentanaTrabajador;
 import Vista.habitacion.VentanaHabitacion;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -21,11 +21,11 @@ public class VentanaSistema {
 
     private VentanaHabitacion vHabitacion;
     private VentanaProducto vProducto;
-    private PanelClientes vClientes;
-    private PanelTrabajador vTrabajador;
+    private VentanaClientes vClientes;
+    private VentanaTrabajador vTrabajador;
     private JFrame ventana;
     private MenuOpciones menu;
-    private JDesktopPane escritorio;
+    public static JDesktopPane escritorio;
 
     public VentanaSistema() {
         initComponents();
@@ -72,11 +72,11 @@ public class VentanaSistema {
         return vProducto;
     }
 
-    public PanelClientes getvClientes() {
+    public VentanaClientes getvClientes() {
         return vClientes;
     }
 
-    public PanelTrabajador getvTrabajador() {
+    public VentanaTrabajador getvTrabajador() {
         return vTrabajador;
     }
 

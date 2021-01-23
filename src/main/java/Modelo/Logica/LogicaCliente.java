@@ -3,12 +3,14 @@ package Modelo.Logica;
 import static Metodos.Ayuda.*;
 import Modelo.Datos.ClienteDaoJDBC;
 import Modelo.domain.ClienteDTO;
-import Vista.ClientesTrabajadores.PanelClientes;
+import Vista.ClientesTrabajadores.VentanaClientes;
 import Vista.ClientesTrabajadores.PanelRegistroCliente;
 import Vista.Formularios.PanelTabla;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,7 +35,7 @@ public class LogicaCliente {
     private final PanelRegistroCliente componente;
     private final PanelTabla componenteTabla;
 
-    public LogicaCliente(PanelClientes componente, Connection conexion) {
+    public LogicaCliente(VentanaClientes componente, Connection conexion) {
         this.componente = componente.getpRegistroCliente();
         this.componenteTabla = componente.getpListadoClientes();
         this.conexion = conexion;
@@ -58,11 +60,13 @@ public class LogicaCliente {
             } catch (SQLException ex1) {
                 ex.printStackTrace(System.out);
             }
+        } catch (Exception ex) {
+            ventanaMensaje(componente, ex.getMessage(), "¡ERROR!", JOptionPane.ERROR_MESSAGE);
         }
 
     }
 
-    private void insertarCliente() throws SQLException {
+    private void insertarCliente() throws SQLException, Exception {
         String error = comprobarCampos();
         if (error.isEmpty()) {
             cliente = obtenerDatos();
@@ -75,7 +79,7 @@ public class LogicaCliente {
             actualizarTabla();
             limpiarCampos();
         } else {
-            ventanaMensaje(componente, error, "¡ERROR!", JOptionPane.ERROR_MESSAGE);
+            throw new Exception(error);
         }
     }
 

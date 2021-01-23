@@ -125,11 +125,13 @@ public class PanelTabla extends JPanel {
                     txtBuscar = new JTextField(12);
                     btnBuscar = new JButton("Buscar");
                     addOptions(new JLabel("Buscar:"), txtBuscar, btnBuscar);
+                    break;
                 case 4:
                     txtBuscar = new JTextField(12);
                     btnBuscar = new JButton("Buscar");
                     btnEliminar = new JButton("Eliminar");
                     addOptions(opcionesCb, new JLabel("Buscar:"), txtBuscar, btnBuscar, btnEliminar);
+                    break;
             }
             addActionCommands(disposicionBotones);
         }
@@ -154,7 +156,6 @@ public class PanelTabla extends JPanel {
         for (Component component : c) {
             panelOpciones.add(component);
         }
-
         add(panelOpciones, BorderLayout.NORTH);
     }
 

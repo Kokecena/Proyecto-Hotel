@@ -7,6 +7,8 @@ package Metodos;
 
 import java.awt.Component;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -77,5 +79,27 @@ public class Ayuda {
             sb.append(letra);
         }
         return sb.toString();
+    }
+
+    public static java.util.Date convertirDeSQLDateAJavaDate(java.sql.Date sqlDate) {
+        java.util.Date javaDate = null;
+        if (sqlDate != null) {
+            javaDate = new Date(sqlDate.getTime());
+        }
+        return javaDate;
+    }
+
+    public static java.sql.Date convertirDeJavaDateASQLDate(java.util.Date javaDate) {
+        java.sql.Date sqlDate = null;
+        if (javaDate != null) {
+            sqlDate = new java.sql.Date(javaDate.getTime());
+        }
+        return sqlDate;
+    }
+    
+    public static String dateFormat(String pattern, java.util.Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        String dateFormat = sdf.format(date);
+        return dateFormat;
     }
 }

@@ -8,13 +8,15 @@ package Modelo.Logica;
 import Controlador.ControladorCliente;
 import Controlador.ControladorHabitacion;
 import Controlador.ControladorProducto;
+import Controlador.ControladorReserva;
 import Controlador.ControladorTrabajador;
 import Modelo.domain.TrabajadorDTO;
-import Vista.ClientesTrabajadores.PanelClientes;
-import Vista.ClientesTrabajadores.PanelTrabajador;
+import Vista.ClientesTrabajadores.VentanaClientes;
+import Vista.ClientesTrabajadores.VentanaTrabajador;
 import Vista.Pagos.VentanaPagos;
 import Vista.Producto.VentanaProducto;
-import Vista.ReservasConsumos.VentanaReservasConsumos;
+import Vista.ReservasConsumos.VentanaConsumo;
+import Vista.ReservasConsumos.VentanaReserva;
 import Vista.Sistema.VentanaSistema;
 import Vista.UsuarioActivo.UsuarioActivo;
 import Vista.habitacion.VentanaHabitacion;
@@ -38,7 +40,7 @@ public class LogicaSistema {
     }
 
     public void ventanaClientes() {
-        PanelClientes pc = new PanelClientes();
+        VentanaClientes pc = new VentanaClientes();
         LogicaCliente lc = new LogicaCliente(pc, conexion);
         ControladorCliente cc = new ControladorCliente(lc, pc);
         pc.setVisible(true);
@@ -62,17 +64,19 @@ public class LogicaSistema {
     }
 
     public void ventanaTrabajador() {
-        PanelTrabajador pt = new PanelTrabajador();
+        VentanaTrabajador pt = new VentanaTrabajador();
         LogicaTrabajador lt = new LogicaTrabajador(pt, conexion);
         ControladorTrabajador ct = new ControladorTrabajador(lt, pt);
         pt.setVisible(true);
         componente.getEscritorio().add(pt);
     }
 
-    public void ventanaConsumos() {
-        VentanaReservasConsumos vrc = new VentanaReservasConsumos();
-        vrc.setVisible(true);
-        componente.getEscritorio().add(vrc);
+    public void ventanaReserva() {
+        VentanaReserva vr = new VentanaReserva();
+        LogicaReserva lr = new LogicaReserva(vr,usuario,conexion);
+        ControladorReserva cr = new ControladorReserva(lr,vr);
+        vr.setVisible(true);
+        componente.getEscritorio().add(vr);
     }
 
     public void ventanaPagos() {

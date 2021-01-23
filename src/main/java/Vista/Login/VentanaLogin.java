@@ -13,6 +13,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import static Metodos.GBCMetodos.*;
 import Metodos.Iconos;
+import com.formdev.flatlaf.extras.components.FlatPasswordField;
+import com.formdev.flatlaf.extras.components.FlatTextField;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -27,8 +29,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class VentanaLogin extends JFrame {
 
-    private JTextField txtUsuario;
-    private JPasswordField txtPassword;
+    private FlatTextField txtUsuario;
+    private FlatPasswordField txtPassword;
     private JButton btnIniciar;
     private JButton btnCancelar;
     private JPanel panelCampos;
@@ -38,7 +40,7 @@ public class VentanaLogin extends JFrame {
     public VentanaLogin() {
         initFrame();
     }
-    
+
     private void initFrame() {
         setTitle("Iniciar Sesion");
         setLayout(new BorderLayout());
@@ -54,8 +56,12 @@ public class VentanaLogin extends JFrame {
     }
 
     private void initComponents() {
-        txtUsuario = new JTextField(14);
-        txtPassword = new JPasswordField(14);
+        txtUsuario = new FlatTextField();
+        txtUsuario.setColumns(14);
+        txtUsuario.setPlaceholderText("Usuario");
+        txtPassword = new FlatPasswordField();
+        txtPassword.setColumns(14);
+        txtPassword.setPlaceholderText("Contraseña");
         btnIniciar = new JButton("Iniciar Sesion", Iconos.ICONO_MENU_SISTEMA);
         btnCancelar = new JButton("Cancelar", Iconos.ICONO_BOTON_CANCELAR);
         panelCampos = new JPanel(new GridBagLayout());
@@ -79,7 +85,7 @@ public class VentanaLogin extends JFrame {
         add(panelBotones, BorderLayout.SOUTH);
     }
 
-    private void addActionCommands(){
+    private void addActionCommands() {
         btnIniciar.setActionCommand("login");
         btnCancelar.setActionCommand("cancel");
     }
@@ -100,5 +106,4 @@ public class VentanaLogin extends JFrame {
         return btnCancelar;
     }
 
-    
 }

@@ -5,6 +5,8 @@
  */
 package Modelo.domain;
 
+import java.util.Date;
+
 /**
  *
  * @author jovan
@@ -16,9 +18,9 @@ public class ReservaDTO {
     private int idCliente;
     private int idTrabajador;
     private String tipoReserva;
-    private String fechaReserva;
-    private String fechaIngreso;
-    private String fechaSalida;
+    private Date fechaReserva;
+    private Date fechaIngreso;
+    private Date fechaSalida;
     private double costoAlojamiento;
     private String observacion;
     private String estado;
@@ -30,7 +32,7 @@ public class ReservaDTO {
         this.idReserva = idReserva;
     }
 
-    public ReservaDTO(int idHabitacion, int idCliente, int idTrabajador, String tipoReserva, String fechaReserva, String fechaIngreso, String fechaSalida, double costoAlojamiento, String observacion, String estado) {
+    public ReservaDTO(int idHabitacion, int idCliente, int idTrabajador, String tipoReserva, Date fechaReserva, Date fechaIngreso, Date fechaSalida, double costoAlojamiento, String observacion, String estado) {
         this.idHabitacion = idHabitacion;
         this.idCliente = idCliente;
         this.idTrabajador = idTrabajador;
@@ -43,7 +45,7 @@ public class ReservaDTO {
         this.estado = estado;
     }
 
-    public ReservaDTO(int idReserva, int idHabitacion, int idCliente, int idTrabajador, String tipoReserva, String fechaReserva, String fechaIngreso, String fechaSalida, double costoAlojamiento, String observacion, String estado) {
+    public ReservaDTO(int idReserva, int idHabitacion, int idCliente, int idTrabajador, String tipoReserva, Date fechaReserva, Date fechaIngreso, Date fechaSalida, double costoAlojamiento, String observacion, String estado) {
         this.idReserva = idReserva;
         this.idHabitacion = idHabitacion;
         this.idCliente = idCliente;
@@ -97,27 +99,27 @@ public class ReservaDTO {
         this.tipoReserva = tipoReserva;
     }
 
-    public String getFechaReserva() {
+    public Date getFechaReserva() {
         return fechaReserva;
     }
 
-    public void setFechaReserva(String fechaReserva) {
+    public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
     }
 
-    public String getFechaIngreso() {
+    public Date getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(String fechaIngreso) {
+    public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getFechaSalida() {
+    public Date getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(String fechaSalida) {
+    public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class TestTrabajador {
 
-    public static void main(String[] args) {
+public static void main(String[] args) {
         Connection conexion = null;
         TrabajadorDAO trabajadores = null;
         TrabajadorDTO trabajador = new TrabajadorDTO("Jovanni", "Sanchez", "Hernandez", "INE", "3345", "CJON. QUIJOTE DE LA MANCHA", "73812349", "jovnni.narciso@gmail.com", 3999.9, "A", "A", "A", "A");
@@ -32,7 +32,6 @@ public class TestTrabajador {
             System.out.println("Haciendo commit");
             conexion.commit();
             trabajadores.select().forEach(System.out::println);
-
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
             try {

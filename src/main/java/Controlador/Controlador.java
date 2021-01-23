@@ -38,7 +38,7 @@ public class Controlador implements ActionListener {
                 modelo.ventanaPagos();
                 break;
             case "reservas":
-                modelo.ventanaConsumos();
+                modelo.ventanaReserva();
                 break;
             case "trabajador":
                 modelo.ventanaTrabajador();
