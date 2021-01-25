@@ -27,7 +27,7 @@ public class PersonaDaoJDBC implements PersonaDAO {
         ResultSet rs = null;
         PersonaDTO persona = null;
         try {
-            pst = cn.prepareCall(SQL_SELECT);
+            pst = cn.prepareStatement(SQL_SELECT);
             pst.setInt(1, p.getIdPersona());
             rs = pst.executeQuery();
             while (rs.next()) {

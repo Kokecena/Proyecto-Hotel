@@ -21,4 +21,6 @@ public interface ProductoDAO {
     int delete(ProductoDTO producto) throws SQLException;
 
     List<ProductoDTO> select() throws SQLException;
+    
+    ProductoDTO search(int idProducto) throws SQLException;
 }

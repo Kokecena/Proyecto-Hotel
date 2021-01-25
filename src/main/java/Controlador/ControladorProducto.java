@@ -18,8 +18,8 @@ import java.awt.event.MouseEvent;
  */
 public class ControladorProducto implements ActionListener {
 
-    private VentanaProducto vista;
-    private LogicaProducto modelo;
+    private final VentanaProducto vista;
+    private final LogicaProducto modelo;
 
     private class SeleccionarFila extends MouseAdapter {
 

@@ -26,6 +26,7 @@ public class HabitacionDaoJDBC implements HabitacionDAO {
     private static final String SQL_UPDATE = "UPDATE habitacion SET numero = ?, piso = ?, descripcion = ?, caracteristicas = ?, precio_diario = ?, estado = ?, tipo_habitacion = ? WHERE idhabitacion = ?";
     private static final String SQL_DELETE = "DELETE FROM habitacion WHERE idhabitacion = ?";
     private static final String SQL_SELECT = "SELECT idhabitacion, numero, piso, descripcion, caracteristicas, precio_diario, estado, tipo_habitacion FROM habitacion";
+    private static final String SQL_SEARCH = "SELECT idhabitacion, numero, piso, precio_diario FROM habitacion WHERE idhabitacion = ?";
 
     public HabitacionDaoJDBC() {
     }
@@ -135,6 +136,31 @@ public class HabitacionDaoJDBC implements HabitacionDAO {
             }
         }
         return habitaciones;
+    }
+
+    @Override
+    public HabitacionDTO search(int idHabitacion) throws SQLException {
+        Connection cn = getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        HabitacionDTO habitacion = null;
+        try {
+            pst = cn.prepareStatement(SQL_SEARCH);
+            pst.setInt(1, idHabitacion);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("idhabitacion");
+                String numero = rs.getString("numero");
+                String piso = rs.getString("piso");
+                double precioDiario = rs.getDouble("precio_diario");
+                habitacion = new HabitacionDTO(id, numero, piso, precioDiario);
+            }
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(pst);
+            Conexion.close(cn);
+        }
+        return habitacion;
     }
 
 }

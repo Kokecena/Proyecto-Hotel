@@ -22,4 +22,6 @@ public interface HabitacionDAO {
     int delete(HabitacionDTO habitacion) throws SQLException;
 
     List<HabitacionDTO> select() throws SQLException;
+    
+    HabitacionDTO search(int idHabitacion) throws SQLException;
 }

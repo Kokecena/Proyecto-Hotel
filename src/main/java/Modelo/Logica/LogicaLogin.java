@@ -60,7 +60,7 @@ public class LogicaLogin {
     private void iniciarSistema(TrabajadorDTO trabajador) {
         VentanaSistema vista = new VentanaSistema();
         LogicaSistema modelo = new LogicaSistema(vista, conexion, trabajador);
-        Controlador c = new Controlador(modelo, vista);
+        Controlador c = new Controlador(modelo);
     }
 
     private String validarDatos() {

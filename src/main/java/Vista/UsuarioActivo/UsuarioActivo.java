@@ -5,6 +5,7 @@
  */
 package Vista.UsuarioActivo;
 
+import Metodos.Iconos;
 import Modelo.domain.TrabajadorDTO;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -36,6 +37,7 @@ public class UsuarioActivo extends JInternalFrame {
     private void initFrame() {
         rellenarDatosUsuario();
         setTitle("Usuario: " + login);
+        this.setFrameIcon(Iconos.ICONO_PESTANA_TRABAJADORES);
         setLayout(new BorderLayout());
         setIconifiable(true);
         initComponents();

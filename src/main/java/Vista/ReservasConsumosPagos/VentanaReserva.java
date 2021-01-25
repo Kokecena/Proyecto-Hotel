@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.ReservasConsumos;
+package Vista.ReservasConsumosPagos;
 
+import static Metodos.Ayuda.tableCellRendererFormatDate;
 import Metodos.Iconos;
 import Vista.Formularios.PanelTabla;
 import java.awt.BorderLayout;
@@ -37,20 +38,7 @@ public class VentanaReserva extends JInternalFrame {
         initFrame();
     }
 
-    TableCellRenderer tableCellRenderer = new DefaultTableCellRenderer() {
-
-        SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy");
-
-        public Component getTableCellRendererComponent(JTable table,
-                Object value, boolean isSelected, boolean hasFocus,
-                int row, int column) {
-            if (value instanceof Date) {
-                value = f.format(value);
-            }
-            return super.getTableCellRendererComponent(table, value, isSelected,
-                    hasFocus, row, column);
-        }
-    };
+    
 
     private void initFrame() {
         setTitle("Reservas");
@@ -64,10 +52,19 @@ public class VentanaReserva extends JInternalFrame {
 
     private void initComponents() {
         pRegistroReserva = new PanelRegistroReserva();
-        pListadoReserva = new PanelTabla("Listado de reservas", new String[]{"ID", "ID Habitacion", "ID Cliente", "ID Trabajador", "Tipo de reserva", "Fecha de reserva", "Fecha de Ingreso", "Fecha de Salida", "Costo", "Observacion", "Estado"}, PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR);
-        pListadoReserva.getTbl().getColumnModel().getColumn(5).setCellRenderer(tableCellRenderer);
-        pListadoReserva.getTbl().getColumnModel().getColumn(6).setCellRenderer(tableCellRenderer);
-        pListadoReserva.getTbl().getColumnModel().getColumn(7).setCellRenderer(tableCellRenderer);
+        pListadoReserva = new PanelTabla("Listado de reservas",
+                new String[]{
+                    "ID", "ID Habitacion", "ID Cliente", "ID Trabajador",
+                    "Tipo de reserva", "Fecha de reserva", "Fecha de Ingreso",
+                    "Fecha de Salida", "Costo",
+                    "Observacion", "Estado"
+                },
+                PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR,
+                "Consumos", "Realizar Pagos", 
+                Iconos.ICONO_PESTANA_CONSUMOS, Iconos.ICONO_SUBMENU_PAGOS);
+        pListadoReserva.getTbl().getColumnModel().getColumn(5).setCellRenderer(tableCellRendererFormatDate);
+        pListadoReserva.getTbl().getColumnModel().getColumn(6).setCellRenderer(tableCellRendererFormatDate);
+        pListadoReserva.getTbl().getColumnModel().getColumn(7).setCellRenderer(tableCellRendererFormatDate);
         pRegistroListado = new JPanel();
         pRegistroListado.setLayout(new BoxLayout(pRegistroListado, BoxLayout.X_AXIS));
         pRegistroListado.add(pRegistroReserva);

@@ -13,15 +13,17 @@ import Controlador.ControladorTrabajador;
 import Modelo.domain.TrabajadorDTO;
 import Vista.ClientesTrabajadores.VentanaClientes;
 import Vista.ClientesTrabajadores.VentanaTrabajador;
-import Vista.Pagos.VentanaPagos;
+import Vista.ReservasConsumosPagos.VentanaPagos;
 import Vista.Producto.VentanaProducto;
-import Vista.ReservasConsumos.VentanaConsumo;
-import Vista.ReservasConsumos.VentanaReserva;
+import Vista.ReservasConsumosPagos.VentanaReserva;
 import Vista.Sistema.VentanaSistema;
 import Vista.UsuarioActivo.UsuarioActivo;
 import Vista.habitacion.VentanaHabitacion;
 import java.awt.event.ActionListener;
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,9 +31,9 @@ import java.sql.Connection;
  */
 public class LogicaSistema {
 
-    private TrabajadorDTO usuario;
-    private VentanaSistema componente;
-    private Connection conexion;
+    private final TrabajadorDTO usuario;
+    private final VentanaSistema componente;
+    private final Connection conexion;
 
     public LogicaSistema(VentanaSistema componente, Connection conexion, TrabajadorDTO usuario) {
         this.componente = componente;
@@ -43,51 +45,51 @@ public class LogicaSistema {
         VentanaClientes pc = new VentanaClientes();
         LogicaCliente lc = new LogicaCliente(pc, conexion);
         ControladorCliente cc = new ControladorCliente(lc, pc);
+        VentanaSistema.escritorio.add(pc);
         pc.setVisible(true);
-        componente.getEscritorio().add(pc);
     }
 
     public void ventanaHabitacion() {
         VentanaHabitacion ph = new VentanaHabitacion();
         LogicaHabitacion lh = new LogicaHabitacion(ph, conexion);
         ControladorHabitacion ch = new ControladorHabitacion(lh, ph);
+        VentanaSistema.escritorio.add(ph);
         ph.setVisible(true);
-        componente.getEscritorio().add(ph);
     }
 
     public void ventanaProducto() {
         VentanaProducto pp = new VentanaProducto();
         LogicaProducto lp = new LogicaProducto(pp, conexion);
         ControladorProducto cp = new ControladorProducto(lp, pp);
+        VentanaSistema.escritorio.add(pp);
         pp.setVisible(true);
-        componente.getEscritorio().add(pp);
     }
 
     public void ventanaTrabajador() {
         VentanaTrabajador pt = new VentanaTrabajador();
         LogicaTrabajador lt = new LogicaTrabajador(pt, conexion);
         ControladorTrabajador ct = new ControladorTrabajador(lt, pt);
+        VentanaSistema.escritorio.add(pt);
         pt.setVisible(true);
-        componente.getEscritorio().add(pt);
     }
 
     public void ventanaReserva() {
         VentanaReserva vr = new VentanaReserva();
-        LogicaReserva lr = new LogicaReserva(vr,usuario,conexion);
-        ControladorReserva cr = new ControladorReserva(lr,vr);
+        LogicaReserva lr = new LogicaReserva(vr, usuario, conexion);
+        ControladorReserva cr = new ControladorReserva(lr, vr);
+        VentanaSistema.escritorio.add(vr);
         vr.setVisible(true);
-        componente.getEscritorio().add(vr);
     }
 
     public void ventanaPagos() {
-        VentanaPagos ppg = new VentanaPagos();
+        VentanaPagos ppg = new VentanaPagos(null);
+        VentanaSistema.escritorio.add(ppg);
         ppg.setVisible(true);
-        componente.getEscritorio().add(ppg);
     }
 
     public void ventanaUsuario() {
         UsuarioActivo ua = new UsuarioActivo(usuario);
-        componente.getEscritorio().add(ua);
+        VentanaSistema.escritorio.add(ua);
     }
 
     public void permisosModificar(ActionListener e) {

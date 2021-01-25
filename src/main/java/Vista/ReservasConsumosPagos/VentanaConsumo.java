@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.ReservasConsumos;
+package Vista.ReservasConsumosPagos;
 
 import Metodos.Iconos;
 import Vista.Formularios.PanelTabla;
@@ -23,13 +23,13 @@ public class VentanaConsumo extends JInternalFrame {
     private PanelTabla pListadoConsumo;
     private JPanel pRegistroListado;
 
-    public VentanaConsumo() {
-        initPanel();
+    public VentanaConsumo(int disposicionBoton) {
+        setLayout(new BorderLayout());
         initComponents();
+        initFrame();
     }
 
-    private void initPanel() {
-        setLayout(new BorderLayout());
+    private void initFrame() {
         setTitle("Consumos");
         setFrameIcon(Iconos.ICONO_PESTANA_CONSUMOS);
         setClosable(true);
@@ -41,7 +41,9 @@ public class VentanaConsumo extends JInternalFrame {
 
     private void initComponents() {
         pRegistroConsumo = new PanelRegistroConsumo();
-        pListadoConsumo = new PanelTabla("Listado de consumos", new String[]{"Test 1","Test 2","Test 3","Test 4"}, PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR);
+        pListadoConsumo = new PanelTabla("Listado de consumos",
+                new String[]{"ID", "ID Producto", "Producto", "Cantidad", "Precio de venta", "Estado"});
+
         pRegistroListado = new JPanel();
         pRegistroListado.setLayout(new BoxLayout(pRegistroListado, BoxLayout.X_AXIS));
         pRegistroListado.add(pRegistroConsumo);

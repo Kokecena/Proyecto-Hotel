@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.ReservasConsumos;
+package Vista.ReservasConsumosPagos;
 
 import Vista.Formularios.PanelRegistro;
 import static Metodos.GBCMetodos.*;
@@ -54,6 +54,7 @@ public class PanelRegistroConsumo extends PanelRegistro {
         txtIdProducto = new JTextField(2);
         txtProducto = new JTextField(12);
         btnBuscarProducto = new JButton("...");
+        btnBuscarProducto.setActionCommand("searchp");
         txtCantidad = new JTextField(8);
         txtPrecioVenta = new JTextField(8);
         cbEstado = new JComboBox(new String[]{"Aceptado", "Cancelado"});

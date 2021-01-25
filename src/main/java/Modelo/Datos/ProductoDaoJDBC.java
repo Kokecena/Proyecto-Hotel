@@ -26,6 +26,7 @@ public class ProductoDaoJDBC implements ProductoDAO {
     private static final String SQL_UPDATE = "UPDATE producto SET nombre = ?, descripcion = ?, unidad_medida = ?, precio_venta = ? WHERE idproducto = ?";
     private static final String SQL_DELETE = "DELETE FROM producto WHERE idproducto = ?";
     private static final String SQL_SELECT = "SELECT idproducto, nombre, descripcion, unidad_medida, precio_venta FROM producto";
+    private static final String SQL_SEARCH = "SELECT idproducto, nombre FROM producto WHERE idproducto = ?";
 
     public ProductoDaoJDBC() {
     }
@@ -122,6 +123,31 @@ public class ProductoDaoJDBC implements ProductoDAO {
             }
         }
         return productos;
+    }
+
+    @Override
+    public ProductoDTO search(int idProducto) throws SQLException {
+        Connection cn = conexionTransaccional != null ? conexionTransaccional : getConnection();
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        ProductoDTO producto = null;
+        try {
+            pst = cn.prepareStatement(SQL_SEARCH);
+            pst.setInt(1, idProducto);
+            rs = pst.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("idproducto");
+                String nombre = rs.getString("nombre");
+                producto = new ProductoDTO(id, nombre);
+            }
+        } finally {
+            Conexion.close(rs);
+            Conexion.close(pst);
+            if (this.conexionTransaccional == null) {
+                Conexion.close(cn);
+            }
+        }
+        return producto;
     }
 
 }

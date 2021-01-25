@@ -5,6 +5,8 @@
  */
 package Modelo.domain;
 
+import java.util.Date;
+
 /**
  *
  * @author jovan
@@ -16,8 +18,8 @@ public class PagoDTO {
     private String numComprobante;
     private double igv;
     private double totalPago;
-    private String fechaEmision;
-    private String fechaPago;
+    private Date fechaEmision;
+    private Date fechaPago;
 
     public PagoDTO() {
     }
@@ -26,7 +28,7 @@ public class PagoDTO {
         this.idPago = idPago;
     }
 
-    public PagoDTO(int idReserva, String tipoComprobante, String numComprobante, double igv, double totalPago, String fechaEmision, String fechaPago) {
+    public PagoDTO(int idReserva, String tipoComprobante, String numComprobante, double igv, double totalPago, Date fechaEmision, Date fechaPago) {
         this.idReserva = idReserva;
         this.tipoComprobante = tipoComprobante;
         this.numComprobante = numComprobante;
@@ -36,7 +38,7 @@ public class PagoDTO {
         this.fechaPago = fechaPago;
     }
 
-    public PagoDTO(int idPago, int idReserva, String tipoComprobante, String numComprobante, double igv, double totalPago, String fechaEmision, String fechaPago) {
+    public PagoDTO(int idPago, int idReserva, String tipoComprobante, String numComprobante, double igv, double totalPago, Date fechaEmision, Date fechaPago) {
         this.idPago = idPago;
         this.idReserva = idReserva;
         this.tipoComprobante = tipoComprobante;
@@ -95,19 +97,19 @@ public class PagoDTO {
         this.totalPago = totalPago;
     }
 
-    public String getFechaEmision() {
+    public Date getFechaEmision() {
         return fechaEmision;
     }
 
-    public void setFechaEmision(String fechaEmision) {
+    public void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 
-    public String getFechaPago() {
+    public Date getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(String fechaPago) {
+    public void setFechaPago(Date fechaPago) {
         this.fechaPago = fechaPago;
     }
 

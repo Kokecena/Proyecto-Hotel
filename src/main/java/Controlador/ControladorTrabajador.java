@@ -17,8 +17,8 @@ import java.awt.event.MouseEvent;
  * @author jovan
  */
 public class ControladorTrabajador implements ActionListener {
-    private VentanaTrabajador vista;
-    private LogicaTrabajador modelo;
+    private final VentanaTrabajador vista;
+    private final LogicaTrabajador modelo;
 
     private class SeleccionarFila extends MouseAdapter {
 

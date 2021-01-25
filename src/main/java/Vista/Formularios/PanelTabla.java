@@ -5,11 +5,13 @@
  */
 package Vista.Formularios;
 
+import Metodos.Iconos;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -41,6 +43,13 @@ public class PanelTabla extends JPanel {
     private JLabel etiRegistros;
     private JPanel panelOpciones;
     private JPanel panelRegistros;
+    private JButton opcionUno;
+    private JButton opcionDos;
+    private ImageIcon imgUno;
+    private ImageIcon imgDos;
+    private String strUno = "";
+    private String strDos = "";
+    private JLabel etiDato;
     private final String nombreTabla;
     private final String[] nombresColumnas;
 
@@ -58,13 +67,32 @@ public class PanelTabla extends JPanel {
         initComponents(disposicionBotones);
     }
 
+    public PanelTabla(String nombreTabla, String nombresColumnas[], int disposicionBotones, String botonUno, String botonDos) {
+        this.nombreTabla = nombreTabla;
+        this.nombresColumnas = nombresColumnas;
+        this.strUno = botonUno;
+        this.strDos = botonDos;
+        initMainPanel();
+        initComponents(disposicionBotones);
+    }
+
+    public PanelTabla(String nombreTabla, String nombresColumnas[], int disposicionBotones, String botonUno, String botonDos, ImageIcon iconoUno, ImageIcon iconoDos) {
+        this.nombreTabla = nombreTabla;
+        this.nombresColumnas = nombresColumnas;
+        this.strUno = botonUno;
+        this.strDos = botonDos;
+        this.imgUno = iconoUno;
+        this.imgDos = iconoDos;
+        initMainPanel();
+        initComponents(disposicionBotones);
+    }
+
     public PanelTabla(String nombreTabla, String nombresColumnas[], int disposicionBotones, String[] opcionesCb) {
         this.nombreTabla = nombreTabla;
         this.nombresColumnas = nombresColumnas;
         this.opcionesCb = new JComboBox(opcionesCb);
         initMainPanel();
         initComponents(disposicionBotones);
-
     }
 
     private void initMainPanel() {
@@ -84,6 +112,7 @@ public class PanelTabla extends JPanel {
         tbl.setModel(modelo);
         jsc = new JScrollPane(tbl);
         etiRegistros = new JLabel("Registros: ");
+        etiDato = new JLabel();
         initButtons(1);
         add(Box.createHorizontalStrut(7), BorderLayout.WEST);
         add(Box.createHorizontalStrut(7), BorderLayout.EAST);
@@ -98,9 +127,21 @@ public class PanelTabla extends JPanel {
                 return false;
             }
         };
+        if (!strUno.isEmpty() && !strDos.isEmpty()) {
+            if (imgUno == null && imgDos == null) {
+                opcionUno = new JButton(strUno);
+                opcionDos = new JButton(strDos);
+            } else {
+                opcionUno = new JButton(strUno, imgUno);
+                opcionDos = new JButton(strDos, imgDos);
+            }
+            opcionUno.setActionCommand("optionone");
+            opcionDos.setActionCommand("optiontwo");
+        }
         tbl = new JTable(modelo);
         jsc = new JScrollPane(tbl);
         etiRegistros = new JLabel("Registros: ");
+        etiDato = new JLabel("");
         initButtons(disposicionBotones);
         add(Box.createHorizontalStrut(7), BorderLayout.WEST);
         add(Box.createHorizontalStrut(7), BorderLayout.EAST);
@@ -161,6 +202,11 @@ public class PanelTabla extends JPanel {
 
     private void addRegisters() {
         panelRegistros = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 7));
+        if (!strUno.isEmpty() && !strDos.isEmpty()) {
+            panelRegistros.add(opcionUno);
+            panelRegistros.add(opcionDos);
+        }
+        panelRegistros.add(etiDato);
         panelRegistros.add(etiRegistros);
         add(panelRegistros, BorderLayout.SOUTH);
     }
@@ -196,4 +242,17 @@ public class PanelTabla extends JPanel {
     public JPanel getPanelOpciones() {
         return panelOpciones;
     }
+
+    public JButton getOpcionUno() {
+        return opcionUno;
+    }
+
+    public JButton getOpcionDos() {
+        return opcionDos;
+    }
+
+    public JLabel getEtiDato() {
+        return etiDato;
+    }
+
 }

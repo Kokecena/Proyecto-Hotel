@@ -16,8 +16,8 @@ import java.awt.event.ActionListener;
  */
 public class ControladorLogin implements ActionListener {
 
-    private VentanaLogin vista;
-    private LogicaLogin modelo;
+    private final VentanaLogin vista;
+    private final LogicaLogin modelo;
 
     public ControladorLogin(VentanaLogin vista, LogicaLogin modelo) {
         this.vista = vista;

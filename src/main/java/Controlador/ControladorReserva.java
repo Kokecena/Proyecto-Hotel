@@ -6,14 +6,15 @@
 package Controlador;
 
 import Modelo.Logica.LogicaReserva;
-import Vista.ReservasConsumos.VentanaListadoClientes;
-import Vista.ReservasConsumos.VentanaListadoHabitaciones;
-import Vista.ReservasConsumos.VentanaReserva;
+import Vista.ReservasConsumosPagos.VentanaListadoClientes;
+import Vista.ReservasConsumosPagos.VentanaListadoHabitaciones;
+import Vista.ReservasConsumosPagos.VentanaPagos;
+import Vista.ReservasConsumosPagos.VentanaReserva;
+import Vista.Sistema.VentanaSistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JInternalFrame;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
@@ -33,7 +34,6 @@ public class ControladorReserva implements ActionListener {
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
             modelo.actualizarReserva();
-
         }
     }
 
@@ -52,6 +52,7 @@ public class ControladorReserva implements ActionListener {
     }
 
     private class SeleccionarRegistro extends MouseAdapter {
+
         @Override
         public void mouseClicked(MouseEvent e) {
             super.mouseClicked(e); //To change body of generated methods, choose Tools | Templates.
@@ -60,7 +61,6 @@ public class ControladorReserva implements ActionListener {
                 modelo.seleccionarRegistro();
             }
         }
-
     }
 
     public ControladorReserva(LogicaReserva modelo, VentanaReserva vista) {
@@ -97,6 +97,12 @@ public class ControladorReserva implements ActionListener {
                 VentanaListadoClientes vlc = new VentanaListadoClientes();
                 modelo.crearVentanaTabla(2, true, vlc, vlc.getpClientes(), vista.getpRegistroReserva().getBtnBuscarCliente(), new CerrarVentana(), new SeleccionarRegistro());
                 break;
+            case "optionone":
+                modelo.abrirConsumo();
+                break;
+            case "optiontwo":
+                modelo.abrirPagos();
+                break;
         }
     }
 
@@ -107,6 +113,8 @@ public class ControladorReserva implements ActionListener {
         vista.getpRegistroReserva().getBtnCancelar().addActionListener(e);
         vista.getpRegistroReserva().getBtnBuscarCliente().addActionListener(e);
         vista.getpRegistroReserva().getBtnBuscarHabitacion().addActionListener(e);
+        vista.getpListadoReserva().getOpcionUno().addActionListener(e);
+        vista.getpListadoReserva().getOpcionDos().addActionListener(e);
     }
 
     private void mouseListener() {

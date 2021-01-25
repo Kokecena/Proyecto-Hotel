@@ -5,28 +5,30 @@
  */
 package Modelo.Logica;
 
+import Controlador.ControladorConsumos;
+import Controlador.ControladorPago;
 import static Metodos.Ayuda.*;
+import Modelo.Datos.HabitacionDAO;
+import Modelo.Datos.HabitacionDaoJDBC;
 import Modelo.Datos.PersonaDAO;
 import Modelo.Datos.PersonaDaoJDBC;
 import Modelo.Datos.ReservaDaoJDBC;
-import Modelo.Datos.TrabajadorDAO;
-import Modelo.Datos.TrabajadorDaoJDBC;
+import Modelo.domain.HabitacionDTO;
 import Modelo.domain.PersonaDTO;
 import Modelo.domain.ReservaDTO;
 import Modelo.domain.TrabajadorDTO;
 import Vista.Formularios.PanelTabla;
-import Vista.ReservasConsumos.PanelRegistroReserva;
-import Vista.ReservasConsumos.VentanaListadoClientes;
-import Vista.ReservasConsumos.VentanaListadoHabitaciones;
-import Vista.ReservasConsumos.VentanaReserva;
+import Vista.ReservasConsumosPagos.PanelListadoConsumos;
+import Vista.ReservasConsumosPagos.PanelRegistroReserva;
+import Vista.ReservasConsumosPagos.VentanaConsumo;
+import Vista.ReservasConsumosPagos.VentanaPagos;
+import Vista.ReservasConsumosPagos.VentanaReserva;
 import Vista.Sistema.VentanaSistema;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -38,22 +40,22 @@ import javax.swing.table.DefaultTableModel;
  * @author jovan
  */
 public class LogicaReserva {
-
+    
     private final int MAX_CARACTERES_OBSERVACION = 255;
     private final int MAX_CARACTERES_COSTO = 10;
-
+    
     private JInternalFrame ventanaLista;
     private int ventanaActiva;//1 - Habitaciones, 2 - Clientes
     private PanelTabla listaTabla;
-
+    
     private Connection conexion = null;
     private ReservaDTO reserva = null;
     private ReservaDaoJDBC reservaDao = null;
-
+    
     private final PanelRegistroReserva componente;
     private final PanelTabla componenteTabla;
     private final TrabajadorDTO usuario;
-
+    
     public LogicaReserva(VentanaReserva componente, TrabajadorDTO usuario, Connection conexion) {
         this.componente = componente.getpRegistroReserva();
         this.componenteTabla = componente.getpListadoReserva();
@@ -62,7 +64,7 @@ public class LogicaReserva {
         this.reservaDao = new ReservaDaoJDBC(conexion);
         datosPersona(usuario, 1);
     }
-
+    
     private void datosPersona(PersonaDTO persona, int tipo) {
         int id = persona.getIdPersona();
         String nombre = persona.getNombre() + " " + persona.getaPaterno() + " " + persona.getaMaterno();
@@ -74,7 +76,7 @@ public class LogicaReserva {
             componente.getTxtCliente().setText(nombre);
         }
     }
-
+    
     public void nuevaReserva() {
         try {
             insertarReserva();
@@ -95,10 +97,9 @@ public class LogicaReserva {
             }
         } catch (Exception ex) {
             ventanaMensaje(componente, ex.getMessage(), "¡ERROR!", JOptionPane.ERROR_MESSAGE);
-        }
-
+        }  
     }
-
+    
     private void insertarReserva() throws SQLException, Exception {
         String error = comprobarCampos();
         if (error.isEmpty()) {
@@ -115,7 +116,7 @@ public class LogicaReserva {
             throw new Exception(error);
         }
     }
-
+    
     public void crearVentanaTabla(int ventanaActiva, boolean activo, JInternalFrame ventana, PanelTabla tabla, JButton boton, InternalFrameListener ifl, MouseListener ml) {
         this.ventanaActiva = ventanaActiva;
         this.listaTabla = tabla;
@@ -130,13 +131,14 @@ public class LogicaReserva {
             ventanaLista.dispose();
         }
     }
-
+    
     public void seleccionarRegistro() {
         int fila = listaTabla.getTbl().getSelectedRow();
         DefaultTableModel modelo = listaTabla.getModelo();
         if (ventanaActiva == 1) {
             componente.getTxtIdHabitacion().setText(String.valueOf(modelo.getValueAt(fila, 0)));
             componente.getTxtNumero().setText(String.valueOf(modelo.getValueAt(fila, 1)));
+            componente.getTxtCosto().setText(String.valueOf(modelo.getValueAt(fila, 5)));
         } else if (ventanaActiva == 2) {
             componente.getTxtIdCliente().setText(String.valueOf(modelo.getValueAt(fila, 0)));
             String nombre = (String) modelo.getValueAt(fila, 1);
@@ -146,13 +148,21 @@ public class LogicaReserva {
         }
         ventanaLista.doDefaultCloseAction();
     }
-
+    
     public void actualizarReserva() {
         PersonaDAO persona = new PersonaDaoJDBC();
+        HabitacionDAO habitacion = new HabitacionDaoJDBC();
         int fila = componenteTabla.getTbl().getSelectedRow();
         DefaultTableModel modelo = componenteTabla.getModelo();
         componente.getTxtId().setText(String.valueOf(modelo.getValueAt(fila, 0)));
         componente.getTxtIdHabitacion().setText(String.valueOf(modelo.getValueAt(fila, 1)));
+        try {
+            int idHabitacion = Integer.parseInt(componente.getTxtIdHabitacion().getText());
+            HabitacionDTO h = habitacion.search(idHabitacion);
+            componente.getTxtNumero().setText(h.getNumero());
+        } catch (Exception ex) {
+            ex.printStackTrace(System.out);
+        }
         componente.getTxtIdCliente().setText(String.valueOf(modelo.getValueAt(fila, 2)));
         componente.getTxtIdTrabajador().setText(String.valueOf(modelo.getValueAt(fila, 3)));
         try {
@@ -174,7 +184,7 @@ public class LogicaReserva {
         componente.getCbEstadoReserva().setSelectedItem(String.valueOf(modelo.getValueAt(fila, 10)));
         activarBotones(true, 3);
     }
-
+    
     public void borrarRegistro() {
         if (Metodos.Ayuda.ventanaMensaje(componenteTabla, "¿Desea borrar este registro?", "Confirmar opción") == 0) {
             int fila = componenteTabla.getTbl().getSelectedRow();
@@ -197,7 +207,7 @@ public class LogicaReserva {
             }
         }
     }
-
+    
     public void actualizarTabla() {
         componenteTabla.getModelo().setRowCount(0);
         List<ReservaDTO> Reservas;
@@ -223,7 +233,7 @@ public class LogicaReserva {
             ex.printStackTrace(System.out);
         }
     }
-
+    
     private ReservaDTO obtenerDatos() {
         String idStr = componente.getTxtId().getText();
         int id = idStr.isEmpty() ? 0 : Integer.parseInt(idStr);
@@ -239,7 +249,7 @@ public class LogicaReserva {
         String estado = (String) componente.getCbEstadoReserva().getSelectedItem();
         return new ReservaDTO(id, idHabitacion, idCliente, idTrabajador, tipoReserva, fechaReserva, fechaIngreso, fechaSalida, costoAlojamiento, observacion, estado);
     }
-
+    
     private String comprobarCampos() {
         String error = "";
         error += comprobarCampo(componente.getTxtIdHabitacion().getText(), "ID Habitacion");
@@ -251,7 +261,7 @@ public class LogicaReserva {
         error += comprobarCampo(componente.getTxtObservacion().getText(), "Observacion", MAX_CARACTERES_OBSERVACION);
         return error;
     }
-
+    
     public void limpiarCampos() {
         datosPersona(usuario, 1);
         componente.getTxtId().setText("");
@@ -266,7 +276,7 @@ public class LogicaReserva {
         componente.getTxtObservacion().setText("");
         componente.getCbEstadoReserva().setSelectedIndex(0);
     }
-
+    
     public void activarBotones(boolean activar, int estado) {
         if (estado == 1) {
             componente.getBtnGuardar().setText("Guardar");
@@ -278,7 +288,7 @@ public class LogicaReserva {
         componente.getBtnCancelar().setEnabled(activar);
         activarCampos(activar);
     }
-
+    
     private void activarCampos(boolean activar) {
         componente.getTxtId().setEnabled(false);
         componente.getTxtIdHabitacion().setEnabled(false);
@@ -296,5 +306,30 @@ public class LogicaReserva {
         componente.getCbEstadoReserva().setEnabled(activar);
         componente.getBtnBuscarHabitacion().setEnabled(activar);
         componente.getBtnBuscarCliente().setEnabled(activar);
+        componenteTabla.getOpcionUno().setEnabled(activar);
+        componenteTabla.getOpcionDos().setEnabled(activar);
+    }
+    
+    public void abrirConsumo() {
+        VentanaConsumo vc = new VentanaConsumo(PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR);
+        int idReserva = Integer.parseInt(componente.getTxtId().getText());
+        String nombreCliente = componente.getTxtCliente().getText();
+        LogicaConsumos lc = new LogicaConsumos(vc, idReserva, nombreCliente, conexion);
+        ControladorConsumos cc = new ControladorConsumos(lc, vc);
+        VentanaSistema.escritorio.add(vc);
+        vc.setVisible(true);
+    }
+    
+    public void abrirPagos() {
+        String idReserva = componente.getTxtId().getText();
+        String idHabitacion = componente.getTxtIdHabitacion().getText();
+        String nombreCliente = componente.getTxtCliente().getText();
+        String numeroHabitacion = componente.getTxtNumero().getText();
+        String costoReserva = componente.getTxtCosto().getText();
+        VentanaPagos vp = new VentanaPagos(new PanelListadoConsumos(Integer.parseInt(idReserva), "Listado de consumos", new String[]{"ID Consumo", "Producto", "Cantidad", "Precio venta"}, PanelTabla.SIN_BOTONES));
+        LogicaPagos lp = new LogicaPagos(vp, conexion,idReserva, idHabitacion, nombreCliente,numeroHabitacion, costoReserva);
+        ControladorPago cp = new ControladorPago(lp, vp);
+        VentanaSistema.escritorio.add(vp);
+        vp.setVisible(true);
     }
 }

@@ -1,4 +1,4 @@
-package Vista.Pagos;
+package Vista.ReservasConsumosPagos;
 
 import Vista.Formularios.PanelRegistro;
 import com.toedter.calendar.JDateChooser;

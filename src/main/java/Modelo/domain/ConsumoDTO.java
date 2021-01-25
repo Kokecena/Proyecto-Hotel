@@ -14,7 +14,7 @@ public class ConsumoDTO {
     private int idConsumo;
     private int idReserva;
     private int idProducto;
-    private double cantidad;
+    private int cantidad;
     private double precioVenta;
     private String estado;
 
@@ -25,7 +25,7 @@ public class ConsumoDTO {
         this.idConsumo = idConsumo;
     }
 
-    public ConsumoDTO(int idConsumo, int idReserva, int idProducto, double cantidad, double precioVenta, String estado) {
+    public ConsumoDTO(int idConsumo, int idReserva, int idProducto, int cantidad, double precioVenta, String estado) {
         this.idConsumo = idConsumo;
         this.idReserva = idReserva;
         this.idProducto = idProducto;
@@ -34,7 +34,7 @@ public class ConsumoDTO {
         this.estado = estado;
     }
 
-    public ConsumoDTO(int idReserva, int idProducto, double cantidad, double precioVenta, String estado) {
+    public ConsumoDTO(int idReserva, int idProducto, int cantidad, double precioVenta, String estado) {
         this.idReserva = idReserva;
         this.idProducto = idProducto;
         this.cantidad = cantidad;
@@ -66,11 +66,11 @@ public class ConsumoDTO {
         this.idProducto = idProducto;
     }
 
-    public double getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(double cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 

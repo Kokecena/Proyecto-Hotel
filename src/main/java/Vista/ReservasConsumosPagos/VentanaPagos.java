@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista.Pagos;
+package Vista.ReservasConsumosPagos;
 
+import static Metodos.Ayuda.tableCellRendererFormatDate;
 import Metodos.Iconos;
 import Vista.Formularios.PanelTabla;
 import java.awt.BorderLayout;
@@ -23,20 +24,22 @@ public class VentanaPagos extends JInternalFrame {
     private PanelRegistroPagos pRegistroPagos;
     private PanelTabla pListadoPagos;
     private PanelTabla pListadoConsumos;
-    private final Dimension TAMANO_TABLA = new Dimension(500,200);
+    private final Dimension TAMANO_TABLA = new Dimension(500, 200);
     private JPanel pListados;
     private JPanel pVentana;
     private JPanel pCampos;
 
-    public VentanaPagos() {
+    public VentanaPagos(PanelTabla pConsumos) {
+        setLayout(new BorderLayout());
+        this.pListadoConsumos = pConsumos;
+        initComponents();
         initFrame();
     }
 
     private void initFrame() {
         setTitle("Pagos");
         setFrameIcon(Iconos.ICONO_SUBMENU_PAGOS);
-        setLayout(new BorderLayout());
-        initComponents();
+
         addComponents();
         setClosable(true);
         setIconifiable(true);
@@ -45,8 +48,8 @@ public class VentanaPagos extends JInternalFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
     }
-    
-    private void addComponents(){
+
+    private void addComponents() {
         pListados.add(pListadoConsumos);
         pListados.add(Box.createVerticalStrut(10));
         pListados.add(pListadoPagos);
@@ -62,15 +65,16 @@ public class VentanaPagos extends JInternalFrame {
 
     private void initComponents() {
         pRegistroPagos = new PanelRegistroPagos();
-        pListadoPagos = new PanelTabla("Listado de pagos",new String[]{"Test 1", "Test 2", "Test 3", "Test 4"},PanelTabla.SIN_BOTONES);
-        pListadoConsumos = new PanelTabla("Listado de consumos",new String[]{"Test 1", "Test 2", "Test 3", "Test 4"},PanelTabla.SIN_BOTONES);
+        pListadoPagos = new PanelTabla("Listado de pagos", new String[]{"ID","Tipo de comprobante", "N. comprobante", "IGV", "Total pago", "Fecha de emision", "Fecha de pago"}, PanelTabla.CON_BOTONES_BUSQUEDA_ELIMINAR, "Imprimir", "Imprimir consumos");
+        pListadoPagos.getTbl().getColumnModel().getColumn(5).setCellRenderer(tableCellRendererFormatDate);
+        pListadoPagos.getTbl().getColumnModel().getColumn(6).setCellRenderer(tableCellRendererFormatDate);
         pListadoPagos.setPreferredSize(TAMANO_TABLA);
         pListadoConsumos.setPreferredSize(TAMANO_TABLA);
         pListados = new JPanel();
         pCampos = new JPanel();
         pVentana = new JPanel();
         pListados.setLayout(new BoxLayout(pListados, BoxLayout.Y_AXIS));
-        pVentana.setLayout(new BoxLayout(pVentana,BoxLayout.X_AXIS));
+        pVentana.setLayout(new BoxLayout(pVentana, BoxLayout.X_AXIS));
     }
 
     public PanelRegistroPagos getpRegistroPagos() {
@@ -84,6 +88,5 @@ public class VentanaPagos extends JInternalFrame {
     public PanelTabla getpListadoConsumos() {
         return pListadoConsumos;
     }
-    
 
 }

@@ -18,8 +18,8 @@ import java.awt.event.MouseEvent;
  */
 public class ControladorHabitacion implements ActionListener {
 
-    private VentanaHabitacion vista;
-    private LogicaHabitacion modelo;
+    private final VentanaHabitacion vista;
+    private final LogicaHabitacion modelo;
 
     private class SeleccionarFila extends MouseAdapter {
         @Override
@@ -49,7 +49,6 @@ public class ControladorHabitacion implements ActionListener {
                 modelo.nuevaHabitacion();
                 break;
             case "delete":
-                System.out.println("Borrar");
                 modelo.borrarRegistro();
                 break;
             case "cancel":

@@ -1,7 +1,6 @@
 package Controlador;
 
 import Modelo.Logica.LogicaSistema;
-import Vista.Sistema.VentanaSistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,11 +10,9 @@ import java.awt.event.ActionListener;
  */
 public class Controlador implements ActionListener {
 
-    private VentanaSistema vista;
-    private LogicaSistema modelo;
+    private final LogicaSistema modelo;
 
-    public Controlador(LogicaSistema modelo, VentanaSistema vista) {
-        this.vista = vista;
+    public Controlador(LogicaSistema modelo) {
         this.modelo = modelo;
         modelo.ventanaUsuario();
         actionListener(this);

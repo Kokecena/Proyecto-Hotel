@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -102,4 +105,20 @@ public class Ayuda {
         String dateFormat = sdf.format(date);
         return dateFormat;
     }
+    
+    public static TableCellRenderer tableCellRendererFormatDate = new DefaultTableCellRenderer() {
+
+        SimpleDateFormat f = new SimpleDateFormat("MM/dd/yyyy");
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value, boolean isSelected, boolean hasFocus,
+                int row, int column) {
+            if (value instanceof Date) {
+                value = f.format(value);
+            }
+            return super.getTableCellRendererComponent(table, value, isSelected,
+                    hasFocus, row, column);
+        }
+    };
 }
